@@ -1,0 +1,630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddNewUser" xml:space="preserve">
+    <value>Agregar nuevo usuario</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="AddTicket" xml:space="preserve">
+    <value>Agregar ticket</value>
+  </data>
+  <data name="AssignTo" xml:space="preserve">
+    <value>Asigando a</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Categoria</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirmar contraseña</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Contenido</value>
+  </data>
+  <data name="CostPerDay" xml:space="preserve">
+    <value>Costo por dia</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+  <data name="DeleteMessage" xml:space="preserve">
+    <value>¿Esta seguro que quiere eliminar este usuario?</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="Dni" xml:space="preserve">
+    <value>Rut</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Nombre completo</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hola</value>
+  </data>
+  <data name="MyTasks" xml:space="preserve">
+    <value>Registro de horas</value>
+  </data>
+  <data name="MyTickets" xml:space="preserve">
+    <value>Mis tickets</value>
+  </data>
+  <data name="NewTicket" xml:space="preserve">
+    <value>Nuevo ticket</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="Priority" xml:space="preserve">
+    <value>Prioridad</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>Proyecto</value>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>Nombre proyecto</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Proyectos</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Reportes</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>Lenguaje</value>
+  </data>
+  <data name="SelectUserRole" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="Setup" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titulo</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="UserAdminstration" xml:space="preserve">
+    <value>Adm. de usuarios</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Creado por</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Ingresar</value>
+  </data>
+  <data name="Updates" xml:space="preserve">
+    <value>Actualizaciones</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>Nuevo usuario</value>
+  </data>
+  <data name="UserAdminCreate" xml:space="preserve">
+    <value>Admin. usuarios -  Crear nuevo usuario</value>
+  </data>
+  <data name="UserAdminUpdate" xml:space="preserve">
+    <value>Admin. usuario - Editar usuario</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Regresar</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="UserAdminList" xml:space="preserve">
+    <value>Admin. usuarios - listado usuarios</value>
+  </data>
+  <data name="ResendPassword" xml:space="preserve">
+    <value>Re-enviar pass.</value>
+  </data>
+  <data name="TicketId" xml:space="preserve">
+    <value>TicketId</value>
+  </data>
+  <data name="TicketType" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="NewProject" xml:space="preserve">
+    <value>Nuevo proyecto</value>
+  </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>Olvide mi password</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Soporte</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Recordarme</value>
+  </data>
+  <data name="PleaseTypeYourMail" xml:space="preserve">
+    <value>Por favor ingresa tu mail.</value>
+  </data>
+  <data name="ForgotPasswordConfirmation" xml:space="preserve">
+    <value>Tu contraseña ha sido enviada</value>
+  </data>
+  <data name="CheckYourMailMessage" xml:space="preserve">
+    <value>Por favor revisa tu correo para resetear tu contraseña.</value>
+  </data>
+  <data name="ErrorNotification" xml:space="preserve">
+    <value>Un error ha ocurrido..</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Ops! Hemos encontrado un error por favor describe que estabas haciendo para poder ayudarte!</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Mensaje</value>
+  </data>
+  <data name="DatabaseUpdated" xml:space="preserve">
+    <value>Base de datos actualizada</value>
+  </data>
+  <data name="DbUpdateError" xml:space="preserve">
+    <value>Error actualización</value>
+  </data>
+  <data name="DatabaseUpdate" xml:space="preserve">
+    <value>Actualización BD</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Versión</value>
+  </data>
+  <data name="ScriptFileName" xml:space="preserve">
+    <value>Archivo script</value>
+  </data>
+  <data name="SetttingId" xml:space="preserve">
+    <value>Id Configuración</value>
+  </data>
+  <data name="ConfigurationKey" xml:space="preserve">
+    <value>Clave configuración</value>
+  </data>
+  <data name="ConfigurationValue" xml:space="preserve">
+    <value>Valor configuración</value>
+  </data>
+  <data name="DefaultValue" xml:space="preserve">
+    <value>Valor por defecto</value>
+  </data>
+  <data name="ApplicationSettings" xml:space="preserve">
+    <value>Configuraciones </value>
+  </data>
+  <data name="BugDeliveryOk" xml:space="preserve">
+    <value>El problema ha sido enviado a nuestros desarrolladores. Gracias a mejorar nuestra aplicación!</value>
+  </data>
+  <data name="BugDeliveryNOk" xml:space="preserve">
+    <value>Ops, Algo pasa con nuestros servidores. Por favor contacte a nuestros administradores. </value>
+  </data>
+  <data name="DatabaseInstalled" xml:space="preserve">
+    <value>Felicidades! la base de datos fue instalada.</value>
+  </data>
+  <data name="DatabaseInstallError" xml:space="preserve">
+    <value>Errores durante la instalación de la base de datos.</value>
+  </data>
+  <data name="DatabaseAlreadyInstalled" xml:space="preserve">
+    <value>Base de datos ya instalada</value>
+  </data>
+  <data name="InstallDb" xml:space="preserve">
+    <value>Instalar Base de datos</value>
+  </data>
+  <data name="MyTasksInstallation" xml:space="preserve">
+    <value>Instalación MyTasks</value>
+  </data>
+  <data name="AdviceToReply" xml:space="preserve">
+    <value>Este correo fue enviado por una direccion que no acepta correo entrante. Porfavor use esta direccion {0} para consultas y dudas.</value>
+  </data>
+  <data name="ForgotPasswordDefaultBodyMail" xml:space="preserve">
+    <value>Hemos recibido una solicitud para cambiar su contraseña para su cuenta MyTasks. Por favor sigue el siguiente link: {0}</value>
+  </data>
+  <data name="ForgotPasswordSubject" xml:space="preserve">
+    <value>Solicitud cambio contraseña en MyTasks </value>
+  </data>
+  <data name="ConfirmationNewUserEmailBody" xml:space="preserve">
+    <value>Bienvenido a MyTask. Por favor haz click en la siguiente url para activar tu cuenta {0}</value>
+  </data>
+  <data name="ConfirmationNewUserSubject" xml:space="preserve">
+    <value>Confirmacion registro en MyTasks</value>
+  </data>
+  <data name="CustomerIsRequired" xml:space="preserve">
+    <value>Cliente es requerido.</value>
+  </data>
+  <data name="ProjectNameAlreadySaved" xml:space="preserve">
+    <value>El nombre de este proyecto ya existe.</value>
+  </data>
+  <data name="ProjectNameRequired" xml:space="preserve">
+    <value>Nombre de proyecto es requerido</value>
+  </data>
+  <data name="EditProject" xml:space="preserve">
+    <value>Editar proyecto</value>
+  </data>
+  <data name="ProjectEdition" xml:space="preserve">
+    <value>Project edition</value>
+  </data>
+  <data name="DeleteProject" xml:space="preserve">
+    <value>Delete project</value>
+  </data>
+  <data name="UnableToSaveChanges" xml:space="preserve">
+    <value>Problemas en el guardado. Intente nuevamente, y si el problema persiste contacte al administrador del sistema.</value>
+  </data>
+  <data name="DeleteProjectMessage" xml:space="preserve">
+    <value>¿Esta seguro que quiere borrar este proyecto?</value>
+  </data>
+  <data name="TicketNumber" xml:space="preserve">
+    <value>Nr. ticket</value>
+  </data>
+  <data name="UnknownUser" xml:space="preserve">
+    <value>Usuario desconocido</value>
+  </data>
+  <data name="ClickHereToLogIn" xml:space="preserve">
+    <value>click aquí para ingresar</value>
+  </data>
+  <data name="YourPasswordHasBeenSent" xml:space="preserve">
+    <value>Su password ha sido enviada. Por favor </value>
+  </data>
+  <data name="IncorrectPassword" xml:space="preserve">
+    <value>Password incorrecta</value>
+  </data>
+  <data name="YouMustConfirmYourEmail" xml:space="preserve">
+    <value>Usted debe tener su email confirmado.</value>
+  </data>
+  <data name="ThankYouForConfirmingYourEmail" xml:space="preserve">
+    <value>Thank you for confirming your email. Please </value>
+  </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>Mi perfil</value>
+  </data>
+  <data name="ChangeYourPassword" xml:space="preserve">
+    <value>Cambiar password</value>
+  </data>
+  <data name="ChangeYourSettings" xml:space="preserve">
+    <value>Cambiar opciones de usuario</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="UserSettings" xml:space="preserve">
+    <value>Opciones de usuario</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Editar usuario</value>
+  </data>
+  <data name="ForgotYourPasswordTitle" xml:space="preserve">
+    <value>¿Olvidaste tu contraseña?</value>
+  </data>
+  <data name="UserDeletion" xml:space="preserve">
+    <value>Borrado de usuario</value>
+  </data>
+  <data name="DashBoard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Resetear</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Resetear contraseña</value>
+  </data>
+  <data name="ResetYourPassword" xml:space="preserve">
+    <value>Resetee su contraseña.</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>o</value>
+  </data>
+  <data name="EditProfile" xml:space="preserve">
+    <value>Editar perfil</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Fono</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>cancelar</value>
+  </data>
+  <data name="UploadYourPhoto" xml:space="preserve">
+    <value>Suba su foto de perfil</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Cambiar contraseña</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nueva contraseña</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Actual contraseña</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>Nombre cliente</value>
+  </data>
+  <data name="Customers" xml:space="preserve">
+    <value>Clientes</value>
+  </data>
+  <data name="NewCustomer" xml:space="preserve">
+    <value>Nuevo cliente</value>
+  </data>
+  <data name="UpdateCustomer" xml:space="preserve">
+    <value>Actualizar cliente</value>
+  </data>
+  <data name="DeleteCustomer" xml:space="preserve">
+    <value>Eliminar cliente</value>
+  </data>
+  <data name="DeleteCustomerMessage" xml:space="preserve">
+    <value>¿Esta seguro que quiere borrar este cliente?</value>
+  </data>
+  <data name="CustomerIsAlreadyUsed" xml:space="preserve">
+    <value>Este cliente está siendo usado por uno o mas proyectos</value>
+  </data>
+  <data name="IsBilliable" xml:space="preserve">
+    <value>Cobrable</value>
+  </data>
+  <data name="MainContactEmail" xml:space="preserve">
+    <value>Contact email</value>
+  </data>
+  <data name="MainContactName" xml:space="preserve">
+    <value>Nombre contacto</value>
+  </data>
+  <data name="High" xml:space="preserve">
+    <value>Alta</value>
+  </data>
+  <data name="Low" xml:space="preserve">
+    <value>Baja</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Media</value>
+  </data>
+  <data name="ProjectManager" xml:space="preserve">
+    <value>Admin. proyecto</value>
+  </data>
+  <data name="SelectAProject" xml:space="preserve">
+    <value>Seleccione un proyecto</value>
+  </data>
+  <data name="SelectACategory" xml:space="preserve">
+    <value>Seleccione una categoria</value>
+  </data>
+  <data name="SelectAnArea" xml:space="preserve">
+    <value>Seleccione un area</value>
+  </data>
+  <data name="SelectAPriority" xml:space="preserve">
+    <value>Seleccione una prioridad</value>
+  </data>
+  <data name="SelectAnUser" xml:space="preserve">
+    <value>Seleccione un usuario</value>
+  </data>
+  <data name="ProjectIsRequired" xml:space="preserve">
+    <value>Proyecto es requerido</value>
+  </data>
+  <data name="AreaIdIsRequired" xml:space="preserve">
+    <value>Area es requerido</value>
+  </data>
+  <data name="CategoryIdIsRequired" xml:space="preserve">
+    <value>Categoria es requerido</value>
+  </data>
+  <data name="PriorityIdIsRequired" xml:space="preserve">
+    <value>Prioridad es requerido</value>
+  </data>
+  <data name="UserIdIsRequired" xml:space="preserve">
+    <value>Usuario es requerido</value>
+  </data>
+  <data name="ContentIsRequired" xml:space="preserve">
+    <value>Contenido</value>
+  </data>
+  <data name="TitleIsRequired" xml:space="preserve">
+    <value>Titulo es requerido</value>
+  </data>
+  <data name="TicketHistory" xml:space="preserve">
+    <value>Historial del ticket</value>
+  </data>
+  <data name="At" xml:space="preserve">
+    <value>con fecha</value>
+  </data>
+  <data name="UpdatedBy" xml:space="preserve">
+    <value>Update by</value>
+  </data>
+  <data name="Resolve" xml:space="preserve">
+    <value>Resolver</value>
+  </data>
+  <data name="FullNameIsRequired" xml:space="preserve">
+    <value>Nombre completo es requerido</value>
+  </data>
+  <data name="LanguageIsRequired" xml:space="preserve">
+    <value>Lenguaje es requerido</value>
+  </data>
+  <data name="RoleIdIsRequired" xml:space="preserve">
+    <value>Rol es requerido</value>
+  </data>
+  <data name="UserNameIsRequired" xml:space="preserve">
+    <value>Username is required</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="SelectALanguage" xml:space="preserve">
+    <value>Seleccione lenguaje</value>
+  </data>
+  <data name="SelectARole" xml:space="preserve">
+    <value>Seleccione rol</value>
+  </data>
+  <data name="SelectACustomer" xml:space="preserve">
+    <value>Seleccione un cliente</value>
+  </data>
+  <data name="SelectAManager" xml:space="preserve">
+    <value>Seleccione un administrador</value>
+  </data>
+  <data name="IsUsed" xml:space="preserve">
+    <value>Esta en uso</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Si</value>
+  </data>
+  <data name="CustomerNameIsRequired" xml:space="preserve">
+    <value>Nombre cliente es requerido</value>
+  </data>
+  <data name="EmailAddressNotValid" xml:space="preserve">
+    <value>Dirección de correo no valida</value>
+  </data>
+  <data name="PasswordSuccessfullySent" xml:space="preserve">
+    <value>Password enviada exitosamente</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="Reactivate" xml:space="preserve">
+    <value>Reactivar</value>
+  </data>
+  <data name="ReOpen" xml:space="preserve">
+    <value>Reopen</value>
+  </data>
+  <data name="SummaryByProject" xml:space="preserve">
+    <value>Resumen por proyecto</value>
+  </data>
+  <data name="SummaryByUser" xml:space="preserve">
+    <value>Resumen por usuario</value>
+  </data>
+</root>

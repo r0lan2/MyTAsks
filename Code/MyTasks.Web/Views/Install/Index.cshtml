@@ -1,0 +1,58 @@
+﻿@using MyTasks.Localization.Desktop
+@model IEnumerable<MyTasks.Domain.Dbversion>
+
+@{
+    ViewBag.Title = Desktop.DatabaseUpdate;
+}
+
+@{
+    var grid = new WebGrid(Model, canPage: true, rowsPerPage: 20);
+    grid.Pager(WebGridPagerModes.All);
+}
+
+@using (Html.BeginForm("UpdateDatabase", "Install", FormMethod.Post))
+{
+    <div style="margin-top: 20px" class="well bs-component">
+        <div class="row">
+            <button class="btn btn-success" id="btnUpdate" type="submit">
+                @Desktop.Update
+            </button>
+        </div>
+        <br />
+        <div class="row">
+            @grid.GetHtml(tableStyle: "table table-condensed GridView",
+                headerStyle: "GridViewHeader",
+                alternatingRowStyle: "GridViewRow",
+                selectedRowStyle: "GridViewRow",
+                columns: grid.Columns(
+                    grid.Column("Version", Desktop.Version),
+                    grid.Column("ScriptFileName", Desktop.ScriptFileName)
+                    )
+                )
+        </div>
+        @if (ViewBag.ShowUpdateMessage)
+        {
+            <div class="row">
+               @if (ViewBag.IsSucceed)
+               {
+                <div class="alert alert-success" role="alert">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    @ViewBag.ResultMessage
+                </div>
+               }
+               else
+               {
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    @ViewBag.ResultMessage
+                </div>
+               }
+            </div>
+        }
+       
+        
+    </div>
+}
+
+

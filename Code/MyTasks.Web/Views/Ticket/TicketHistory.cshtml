@@ -1,0 +1,126 @@
+﻿@using MyTasks.Localization.Desktop
+@model MyTasks.Domain.DataContracts.TicketHistoryData
+    
+@{
+    ViewBag.Title = Desktop.TicketHistory;
+}
+
+
+@*TODO: Show files for each entry:http://techbrij.com/crud-file-upload-asp-net-mvc-ef-multiple*@
+<div id="editTicket" style="display: none">
+    @Html.Partial("TicketUpdate", @Model.LastEditedTicket)    
+</div>
+
+
+<div class="col-md-12 portlets">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-1">
+                    <div class="ticketHeader">@Model.LastEditedTicket.TicketNumber</div>
+                </div>
+                <div class="col-md-11">
+                    <div class="ticketHeader">@Model.LastEditedTicket.Title</div>
+                </div>
+            </div>
+
+            <div class="spacer-xs"></div>
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-11">
+                    <button id="EditTicketBtn" class="btn btn-primary pull-left" style="margin-left: 10px">
+                        <span class="hidden-xs">@Desktop.Edit </span>
+                    </button>
+                </div>
+            </div>
+            <div class="spacer-s"></div>
+                <div class="row">
+                    <div class="form quick-post">
+                        <form class="form-horizontal">
+                            @{
+
+                                foreach (var ticketItem in Model.TicketListItems.ToList())
+                                {
+                                    @Html.Partial("TicketItem", ticketItem)
+                                    <br/>
+                                }
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/summernote", "~/Scripts/ticket-create.js")
+
+    <script type="text/javascript">
+        $(document)
+            .ready(function() {
+                addButtonActions();
+                setCombos();
+                setProjectAndAreas();
+            });
+
+        function addButtonActions() {
+            $("#EditTicketBtn")
+              .click(function () {
+                  $("#editTicket").show("slow");
+                  $("#cancelEditionBtn").show("slow");
+              });
+
+            $("#cancelEditionLnk")
+                .click(function () {
+                    $("#editTicket").hide("Highlight");
+                });
+
+        }
+
+        function setCombos() {
+            $('#ProjectId')
+                .change(function () {
+                    var projectId = $('#ProjectId').val();
+                    dataService.getAreasByProject(projectId, function (data) {
+                        var items;
+                        $.each(data,
+                            function (i, area) {
+                                items += "<option value='" + area.AreaId + "'>" + area.Name + "</option>";
+                            });
+                        $('#areas').html(items);
+                        $("#areas")[0].selectedIndex = 0;
+                        $("#AreaId").val($("#areas").val());
+                    });
+
+                });
+
+            $('#areas')
+                .change(function () {
+                    $("#AreaId").val($(this).val());
+                });
+        };
+
+        function setProjectAndAreas() {
+            var projectId = $('#ProjectId').val();
+            var areaId = $("#AreaId").val();
+            dataService.getAreasByProject(projectId,
+                function (data) {
+                    var items;
+                    $.each(data,
+                        function (i, area) {
+                            items += "<option value='" + area.AreaId + "'>" + area.Name + "</option>";
+                        });
+                    $('#areas').html(items);
+                    $("#areas").val(areaId);
+                });
+        }
+
+
+
+    </script>
+}
+
+

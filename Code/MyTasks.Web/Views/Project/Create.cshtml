@@ -1,0 +1,107 @@
+﻿@model MyTasks.Domain.Project
+@using MyTasks.Localization.Desktop
+
+@{
+    ViewBag.Title = Desktop.NewProject;
+}
+
+<div style="margin-top: 20px" class="well bs-component">
+   
+
+        <div class="form-horizontal">
+            <h4>@Desktop.NewProject</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="col-md-2 control-label">
+                    @Desktop.ProjectName
+                </label>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.ProjectName, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.ProjectName, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">
+                    @Desktop.Customer
+                </label>
+                <div class="col-md-4">
+                    @Html.DropDownList("CustomerId", ViewBag.CustomerList as SelectList, @Desktop.SelectACustomer, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CustomerId, "*")
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">
+                   @Desktop.ProjectManager
+                </label>
+                <div class="col-md-4">
+                    @Html.DropDownList("ProjectManagerId", ViewBag.ProjectManagerList as SelectList, @Desktop.SelectAManager, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProjectManagerId, "*")
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">
+                    @Desktop.Description
+                </label>
+                <div class="col-md-4">
+                    @Html.TextAreaFor(model => model.Description, 5, 46, null)
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                    <table class="table table-responsive">
+                        <tr>
+                            <td>@Desktop.Area</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr class="mycontainer" id="mainrow">
+                            <td>
+                                <input type="text" id="areaName" class="areaName form-control"/>
+                                <span class="error">@Desktop.AreaIdIsRequired</span>
+                            </td>
+                            <td>
+                                <input type="button" id="add" value="add" style="width: 80px" class="btn btn-success pull-right"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="areaItems">
+                        <table class="table table-responsive" id="areadetailsItems"></table>
+                        <span id="areaItemError" style="color: red"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button name="button" value="send" id="submit" class="btn btn-primary">@Desktop.Create</button>
+                        &nbsp;&nbsp;<span style="vertical-align: bottom">  @Desktop.Or </span>&nbsp;&nbsp;
+                        @Html.ActionLink(Desktop.BackToList, "Index", "Project", null, new { @style = "vertical-align: bottom;" })
+                    </div>
+                </div>
+            </div>
+    
+</div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval", "~/Scripts/project.js")
+
+    }
+
+<style>
+    span.error {
+        display: block;
+        visibility: hidden;
+        color: red;
+        font-size: 90%;
+    }
+
+    tr.error {
+        background-color: rgba(255,0,0,0.35);
+    }
+</style>
+
+

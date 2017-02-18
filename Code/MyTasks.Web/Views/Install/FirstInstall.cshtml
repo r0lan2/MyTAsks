@@ -1,0 +1,42 @@
+﻿@using MyTasks.Localization.Desktop
+@model IEnumerable<MyTasks.Domain.Dbversion>
+
+@{
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+    ViewBag.Title = Desktop.MyTasksInstallation;
+}
+
+@using (Html.BeginForm("InstallDatabase", "Install", FormMethod.Post))
+{
+    <div style="margin-top: 20px" class="well bs-component">
+        <div class="row">
+            <button class="btn btn-success" id="btnInstall" type="submit">
+                @Desktop.InstallDb
+            </button>
+        </div>
+        <br/>
+        @if (ViewBag.ShowUpdateMessage)
+        {
+            <div class="row">
+                @if (ViewBag.IsSucceed)
+                {
+                    <div class="alert alert-success" role="alert">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        @ViewBag.ResultMessage
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        @ViewBag.ResultMessage
+                    </div>
+                }
+            </div>
+        }
+
+    </div>
+}
+
+

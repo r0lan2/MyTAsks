@@ -1,0 +1,68 @@
+﻿@using MyTasks.Localization.Desktop
+@using MyTasks.Web.Security
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title - My Tasks</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="img/favicon.png">
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/niceadmin")
+    @Styles.Render("~/Content/summernote")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+        <script src="js/lte-ie7.js"></script>
+    <![endif]-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/niceadmin")
+</head>
+
+<body>
+    <!-- container section start -->
+    <section id="container" class="">
+
+        <header class="header dark-bg">
+            <!--logo start-->
+            <a href='@Url.Action("Index", "Ticket")' class="logo">
+                My <span class="lite">Tasks</span>
+            </a>
+            <!--logo end-->
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <aside>
+            
+        </aside>
+        <!--sidebar end-->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+                <!--overview start-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="container body-content">
+                            @RenderBody()
+                            <hr />
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+            </section>
+        </section>
+        <!--main content end-->
+    </section>
+    <!-- container section start -->
+    <!-- javascripts -->
+
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>

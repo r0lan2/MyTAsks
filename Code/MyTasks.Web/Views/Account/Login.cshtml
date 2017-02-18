@@ -1,0 +1,52 @@
+﻿@using MyTasks.Localization.Desktop
+@using MyTasks.Web.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = Desktop.LogIn;
+    Layout = "~/Views/Account/_LoginLayout.cshtml";
+}
+
+<div class="container">
+    
+        <div class="Absolute-Center is-Responsive">
+            <div class="col-sm-12 col-md-10 col-md-offset-1">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="login-wrap">
+                        <p class="login-img"><i class="icon_lock_alt"></i></p>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icon_profile"></i></span>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                            @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+                        </div>
+
+                        <label class="checkbox">
+                            <span style="padding-left: 20px">@Html.CheckBoxFor(m => m.RememberMe) @Desktop.RememberMe</span>
+
+                            <span class="pull-right"> @Html.ActionLink(Desktop.ForgotYourPassword, "ForgotPassword")</span>
+                        </label>
+                     
+                            <button class="btn btn-primary btn-lg btn-block" type="submit">@Desktop.LogIn</button>
+
+
+                        <div class="input-group">
+                                @Html.ValidationMessageFor(m => m.Email, "", new {@class = "text-danger"})
+                                @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        </div>
+                   </div>
+                }
+              
+            </div>
+        </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

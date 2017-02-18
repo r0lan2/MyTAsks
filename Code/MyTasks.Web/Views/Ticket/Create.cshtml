@@ -1,0 +1,48 @@
+﻿@using MyTasks.Localization.Desktop
+@model MyTasks.Domain.DataContracts.TicketData
+
+@{
+    ViewBag.Title = Desktop.AddTicket;
+}
+
+@Html.Partial("TicketCreate", @Model)
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/summernote","~/Scripts/ticket-create.js")
+
+<script type="text/javascript">
+        $(document)
+            .ready(function () {
+                setCombos();
+            });
+
+        function setCombos() {
+            $('#ProjectId')
+                .change(function () {
+                    var projectId = $('#ProjectId').val();
+                    dataService.getAreasByProject(projectId, function (data) {
+                        var items;
+                        $.each(data,
+                            function (i, area) {
+                                items += "<option value='" + area.AreaId + "'>" + area.Name + "</option>";
+                            });
+                        $('#areas').html(items);
+                        $("#areas")[0].selectedIndex = 0;
+                        $("#AreaId").val($("#areas").val());
+                    });
+
+                });
+
+            $('#areas')
+                .change(function () {
+                    $("#AreaId").val($(this).val());
+                });
+        };
+</script>
+
+
+}
+
+
+    

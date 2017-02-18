@@ -1,0 +1,26 @@
+﻿@using MyTasks.Localization.Desktop
+@{
+    Layout = "~/Views/Account/_LoginLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="Absolute-Center is-Responsive" style="height: 90%; max-width: none; width:90%">
+            <div class="col-sm-12 col-md-10 col-md-offset-1">
+                <div class="well">
+                    @if (ViewBag.isSuccess)
+                    {
+                        <div>
+                            <span>@Desktop.BugDeliveryOk</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            <span>@Desktop.BugDeliveryNOk</span>
+                        </div>
+                    }
+                </div>
+                </div>
+            </div>
+        </div>
+</div>

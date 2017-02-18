@@ -1,0 +1,31 @@
+﻿@using MyTasks.Localization.Desktop
+@model IEnumerable<MyTasks.Domain.ApplicationSettings>
+
+@{
+    ViewBag.Title = Desktop.ApplicationSettings;
+}
+
+@{
+    var grid = new WebGrid(Model, canPage: true, rowsPerPage: 20);
+    grid.Pager(WebGridPagerModes.All);
+}
+
+<div style="margin-top: 20px" class="well bs-component">
+    @grid.GetHtml(tableStyle: "table table-condensed GridView",
+        headerStyle: "GridViewHeader",
+        alternatingRowStyle: "GridViewRow",
+        selectedRowStyle: "GridViewRow",
+        columns: grid.Columns(
+                            grid.Column("SettingId",@Desktop.SetttingId),
+                            grid.Column("ConfigurationKey", @Desktop.ConfigurationKey),
+                            grid.Column("ConfigurationValue", @Desktop.ConfigurationValue),
+                            grid.Column("DefaultValue", @Desktop.DefaultValue),
+                            grid.Column("Description", @Desktop.Description), grid.Column(header: " ", format: (item) =>
+                            new HtmlString(
+                                        Html.ActionLink(@Desktop.Edit, "Edit", new { id = item.SettingId }).ToString() 
+                                )
+                            )
+            )
+        )
+</div>
+

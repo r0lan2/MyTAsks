@@ -1,0 +1,75 @@
+﻿@using MyTasks.Localization.Desktop
+@model MyTasks.Domain.Project
+
+@{
+    ViewBag.Title = Desktop.ProjectEdition;
+}
+
+
+<div style="margin-top: 20px" class="well bs-component">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>@Desktop.EditProject</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="col-md-2 control-label">
+                @Desktop.ProjectName
+            </label>
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.ProjectName, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.ProjectName, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">@Desktop.Customer</label>
+            <div class="col-md-4">
+                @Html.DropDownList("CustomerId", ViewBag.CustomerList as SelectList, @Desktop.SelectACustomer, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CustomerId, "*")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">
+               @Desktop.ProjectManager
+            </label>
+            <div class="col-md-4">
+                @Html.DropDownList("ProjectManagerId", ViewBag.ProjectManagerList as SelectList, @Desktop.SelectAManager, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProjectManagerId, "*")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">
+                @Desktop.Description
+            </label>
+            <div class="col-md-4">
+                @Html.TextAreaFor(model => model.Description,5,46, null)
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button name="button" value="send" class="btn btn-primary">@Desktop.Update</button>
+                &nbsp;&nbsp;<span style="vertical-align: bottom">  @Desktop.Or </span>&nbsp;&nbsp;
+                @Html.ActionLink(Desktop.BackToList, "Index", "Project", null, new { @style = "vertical-align: bottom;" })
+            </div>
+        </div>
+    </div>
+}
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+

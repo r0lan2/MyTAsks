@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = Desktop.ErrorNotification;
+    Layout = "~/Views/Account/_LoginLayout.cshtml";
+}
+
+@using MyTasks.Localization.Desktop
+@model MyTasks.Web.Models.BugReportInfo
+
+@using (Html.BeginForm("SubmitBug", "BugReport", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="row">
+            <div class="Absolute-Center is-Responsive" style="height: 90%; max-width: none; width:90%">
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <div class="well">
+                        <div>
+                            <span>@Desktop.ErrorMessage</span>
+                        </div>
+                        <div>
+                            @*class="form-group input-group"*@
+                            <span> @Desktop.Message</span>
+                            @Html.TextAreaFor(model => model.UserMessage, new { Style = "min-height:250px; width:100%" })
+                        </div>
+                        <div class="form-group input-group">
+                            <span>@Desktop.Email</span>
+                            @Html.TextBoxFor(m => m.UserMail, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-def btn-block">@Desktop.Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+   
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

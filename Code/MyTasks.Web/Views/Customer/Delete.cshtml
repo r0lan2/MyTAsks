@@ -1,0 +1,39 @@
+﻿@model MyTasks.Domain.Customer
+@using MyTasks.Localization.Desktop
+
+@{
+    ViewBag.Title = Desktop.DeleteCustomer;
+}
+
+<div style="margin-top: 20px" class="well bs-component">
+
+    <h3>@Desktop.DeleteCustomerMessage</h3>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                <label class="col-md-4 control-label">
+                    @Desktop.CustomerName
+                </label>
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <button name="button" value="send" class="btn btn-primary">@Desktop.Delete </button>
+                @Html.ActionLink(Desktop.BackToList, "Index")
+            </div>
+        }
+    </div>
+
+
+</div>
+
+

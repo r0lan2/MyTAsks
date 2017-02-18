@@ -1,0 +1,24 @@
+﻿@using RazorEngine.Text
+<section id="" style="margin-top: 100px;margin-left: 20px;margin-right: 20px">
+    <p> Dear @Model.FullName</p>
+    <br />
+    <p>
+        An account has been created for you in MyTask. The next information will be required to Sign in into the system:
+    </p>
+    <br />
+    <p>Username: @Model.Email</p>
+    <br />
+    <p> Pass: @Model.Password</p>
+    <br />
+    <p>
+        @Model.BodyContent <a href='@Model.ActivationUrl'>here</a>  
+    </p>
+    <p>
+        Many thanks,
+        <br />
+        MyTasks administrator
+    </p>
+    <p>
+        @Model.AdviceToReply
+    </p>
+</section>

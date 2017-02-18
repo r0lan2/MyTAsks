@@ -1,0 +1,38 @@
+﻿@model MyTasks.Domain.Project
+@using MyTasks.Localization.Desktop
+
+@{
+    ViewBag.Title = Desktop.DeleteProject;
+}
+
+<div style="margin-top: 20px" class="well bs-component">
+    
+    <h3>@Desktop.DeleteProjectMessage</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                <label class="col-md-4 control-label">
+                    @Desktop.ProjectName
+                </label>
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProjectName)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <button name="button" value="send" class="btn btn-primary">@Desktop.Delete </button>
+                @Html.ActionLink(Desktop.BackToList, "Index")
+            </div>
+        }
+    </div>
+
+
+</div>
+
+  

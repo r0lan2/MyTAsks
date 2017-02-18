@@ -1,0 +1,192 @@
+﻿@using MyTasks.Infrastructure
+@using MyTasks.Localization.Desktop
+@model MyTasks.Domain.DataContracts.TicketData
+
+<div style="margin-top: 20px" class="well">
+    <div>
+        <div class="form-horizontal">
+            <fieldset>
+                <div class="row-fluid">
+                    <div class="form-group">
+                        <label class="control-label col-lg-2" for="Title">@Desktop.Title</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(model => model.Title, new { @class = "form-control title" })
+                            @Html.ValidationMessageFor(model => model.Title, "*")
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-2" for="ProjectId">@Desktop.Project</label>
+                        <div class="col-lg-2">
+                            @Html.DropDownList("ProjectId", ViewBag.projectList as SelectList, @Desktop.SelectAProject, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ProjectId, "*")
+                        </div>
+
+                        <label class="control-label col-lg-2" for="AreaId">@Desktop.Area</label>
+                        <div class="col-lg-2">
+                            <select id="areas" name="areas" class="form-control"></select>
+                            @Html.ValidationMessageFor(model => model.AreaId, "*")
+                        </div>
+
+                        <label class="control-label col-lg-2" for="CategoryId">@Desktop.Category</label>
+                        <div class="col-lg-2">
+                            @Html.DropDownList("CategoryId", ViewBag.CategoryList as SelectList, @Desktop.SelectACategory, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CategoryId, "*")
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-2" for="Id">@Desktop.AssignTo</label>
+                        <div class="col-lg-2">
+                            @Html.DropDownList("UserId", ViewBag.UserList as SelectList, @Desktop.SelectAnUser, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.UserId, "*")
+                        </div>
+
+                        <label class="control-label col-lg-2" for="PriorityId">@Desktop.Priority</label>
+                        <div class="col-lg-2">
+                            @Html.DropDownList("PriorityId", ViewBag.PriorityList as SelectList, @Desktop.SelectAPriority, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PriorityId, "*")
+                        </div>
+
+                        <label class="col-lg-2 control-label" for="Billiable">@Desktop.IsBilliable</label>
+                        <div class="col-lg-2 control-label">
+                            @Html.CheckBoxFor(model => model.IsBillable, new { @class = "pull-left" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Content, new { @class = "col-lg-2 control-label" })
+                        @Html.ValidationMessageFor(model => model.Content, "*")
+                        <div class="col-lg-10">
+                            <div class="row-fluid">
+                                @Html.TextAreaFor(model => model.Content, new { @class = "form-control", @row = 5 })
+                                @Html.ValidationMessageFor(model => model.Content, "*")
+                            </div>
+                            <div class="row-fluid">
+                                <div class="editor-field">
+                                    <input type="file" id="fileUpload" name="file" multiple="multiple" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row-fluid">
+                                @switch ((TicketStatus)Convert.ToInt32(@Model.StatusId))
+                                {
+                                    case TicketStatus.Open:
+                                        {
+                                            <button class="btn btn-primary" id="btnEdit" type="submit">
+                                                @Desktop.Update
+                                            </button>
+                                            <button class="btn btn-primary" id="btnResolve" type="submit">
+                                                @Desktop.Resolve
+                                            </button>
+                                            break;
+                                        }
+                                    case TicketStatus.Resolved:
+                                        {
+                                            <button class="btn btn-primary" id="btnReactivate" type="submit">
+                                                @Desktop.Reactivate
+                                            </button>
+                                            <button class="btn btn-primary" id="btnClose" type="submit">
+                                                @Desktop.Close
+                                            </button>
+                                            break;
+                                        }
+                                    case TicketStatus.Closed:
+                                        {
+                                            <button class="btn btn-primary" id="bntReopen" type="submit">
+                                                @Desktop.ReOpen
+                                            </button>
+                                            break;
+                                        }
+                                }
+
+                                        &nbsp;&nbsp;<span style="vertical-align: bottom">  @Desktop.Or </span>&nbsp;&nbsp;
+                                        @Html.ActionLink(Desktop.Cancel, "Index", "Ticket", null, new { @style = "vertical-align: bottom;" })
+                                    </div>
+
+
+                                    <div class="row-fluid">
+                                @Html.ValidationSummary()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <span id="saveResult"></span>
+                </div>
+
+                @if (@Model != null)
+                {
+                    @Html.HiddenFor(model => model.TicketNumber)
+                    @Html.HiddenFor(model => model.OwnerUserId)
+                    @Html.HiddenFor(model => model.CreatedBy)
+                    @Html.HiddenFor(model => model.AreaId)
+                }
+            </fieldset>
+
+        </div>
+    </div>
+
+</div>
+
+<script language="javascript">
+    $(document).ready(function () {
+        //Change signature for update controller action
+        //Add a bit to  set if is an edition or resolved 
+        $('#btnEdit').click(function () {updateTicket(1);});
+
+        $('#btnResolve').click(function () { updateTicket(2); });
+
+        $('#btnReactivate').click(function () { updateTicket(1); });
+
+        $('#btnClose').click(function () { updateTicket(3); });
+
+        $('#bntReopen').click(function () { updateTicket(1); });
+
+
+     function updateTicket(ticketStatus) {
+
+                                        var fileUpload = $("#fileUpload").get(0);
+                                        var files = fileUpload.files;
+
+                                        // Create FormData object  
+                                        var fileData = new FormData();
+
+                                        // Looping over all files and add it to FormData object  
+                                        fileData.append('Title', $("#Title").val());
+                                        fileData.append('ProjectId', $("#ProjectId").val());
+                                        fileData.append('AreaId', $("#AreaId").val());
+                                        fileData.append('CategoryId', $("#CategoryId").val());
+                                        fileData.append('UserId', $("#UserId").val());
+                                        fileData.append('PriorityId', $("#PriorityId").val());
+                                        fileData.append('Content', $("#Content").val());
+                                        fileData.append('OwnerUserId', $("#OwnerUserId").val());
+                                        fileData.append('TicketNumber', $("#TicketNumber").val());
+                                        fileData.append('CreatedBy', $("#CreatedBy").val());
+                                        fileData.append('IsBillable', $("#IsBillable").val());
+                                        fileData.append('StatusId', ticketStatus);
+
+                                        for (var i = 0; i < files.length; i++) {
+                                            fileData.append(files[i].name, files[i]);
+                                        }
+         
+            $.ajax({
+                                            type : 'POST',
+                url : window.applicationBaseUrl + 'ticket/update',
+                contentType : false, 
+                processData : false, 
+                data : fileData,  
+                success: function (data) {
+                                                if (data.status.IsValid === true) {
+                                                    window.location.href = window.applicationBaseUrl + "ticket/index";
+                                                }
+                                                else {
+                        $('#saveResult').text(data.status.ErrorMessage);
+                                                }
+                                            },
+                error: function (error) {
+                                                console.log(error);
+                    $('#saveResult').text(Resources.UnableToSaveChanges);
+                                            }
+                                        });
+        }
+
+    });
+</script>

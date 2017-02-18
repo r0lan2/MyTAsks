@@ -1,0 +1,60 @@
+# use glob syntax
+syntax: glob
+
+*.obj
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.scc
+*.xml
+*.for
+*.fbl7
+*.fbpInf
+bin/**
+[Bb]in
+[Dd]ebug*/
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Tt]humbs.db
+[Tt]est[Rr]esult*
+[Bb]uild[Ll]og.*
+*.[Pp]ublish.xml
+*.resharper
+*.dot[Cc]over
+*.xap
+*.datasource
+SW/AquaFarmer/resources/**
+SW/CubeDeployment/AquaFarmerCube_v3/**
+SW/AquaFarmer/ClientBin/ReportFinderFiles/**
+Metrics.typemock*
+[Ww]eb.[Cc]onfig
+ConnectionStrings.[Cc]onfig
+[Aa]pp.[Cc]onfig
+lint.db
+*.orig
+*.bat
+*.typemock
+*.rej
+*.rdl.data
+SW/.vs/**/*.*
+
+# use regexp syntax
+syntax: regexp
+#ignore files in packages folder, except config files.
+SW/packages/(?!.*\.config$).+

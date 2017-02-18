@@ -1,0 +1,49 @@
+﻿@using MyTasks.Localization.Desktop
+@model IEnumerable<MyTasks.Domain.DataContracts.TicketListItem>
+@using GridMvc.Html  
+
+@{
+    ViewBag.Title = Desktop.MyTickets;
+}
+
+@{
+    var grid = new WebGrid(Model, canPage: true, rowsPerPage: 20);
+    grid.Pager(WebGridPagerModes.All);
+}
+
+<div style="margin-top: 20px" class="well bs-component">
+    <h4>@Desktop.MyTickets</h4>
+
+    @Html.Grid(Model).Named("myticketsGrid").Columns(columns =>
+{
+    columns.Add().Encoded(false).Sanitized(false).Titled(Desktop.TicketNumber)
+    .RenderValueAs(o => Html.ActionLink(o.TicketNumber.ToString(), "TicketHistory", new { ticketNumber = o.TicketNumber }));
+    columns.Add(c => c.Title).Titled(Desktop.Title);
+    columns.Add(c => c.ProjectName).Titled(Desktop.ProjectName).Filterable(true).SetFilterWidgetType("CustomProjectFilterWidget");
+    columns.Add(c => c.Category).Titled(Desktop.Category).Filterable(true).SetFilterWidgetType("CustomCategoryFilterWidget");
+    columns.Add(c => c.Priority).Titled(Desktop.Priority).Filterable(true).SetFilterWidgetType("CustomPriorityFilterWidget");
+    columns.Add(c => c.StatusDescription).Titled(Desktop.Status).Filterable(true).SetFilterWidgetType("CustomStatusFilterWidget");
+    columns.Add(c => c.AreaName).Titled(Desktop.Area).Filterable(true);
+
+}).WithPaging(10).Sortable(true)
+
+
+
+    <script>
+    $(function () {
+        pageGrids.myticketsGrid.addFilterWidget(new StatusListFilterWidget());
+        pageGrids.myticketsGrid.addFilterWidget(new PriorityListFilterWidget());
+        pageGrids.myticketsGrid.addFilterWidget(new CategoryListFilterWidget());
+        pageGrids.myticketsGrid.addFilterWidget(new ProjectListFilterWidget());
+      
+    });
+    </script>
+
+
+
+
+
+</div>
+
+
+ 

@@ -1,0 +1,229 @@
+﻿@using MyTasks.Localization.Desktop
+@using MyTasks.Web.Security
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title - My Tasks</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="img/favicon.png">
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/niceadmin")
+    @Styles.Render("~/Content/summernote")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+        <script src="js/lte-ie7.js"></script>
+    <![endif]-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/niceadmin")
+    @Scripts.Render("~/bundles/lodash")
+    <link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/dataservice.js")"></script>
+    <script src="@Url.Content("~/Localization/Index")"></script>
+    <script src="~/Scripts/gridmvc.customwidgets.js" type="text/javascript"> </script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script type="text/javascript">
+        var baseUrl = "@Url.Content("~")";
+        window.applicationBaseUrl = @Html.Raw(HttpUtility.JavaScriptStringEncode(
+                                    new Uri(
+                                        new Uri(this.Context.Request.Url.GetLeftPart(UriPartial.Authority)),
+                                        Url.Content("~/")
+                                        ).ToString(), true));
+    </script>
+</head>
+
+
+
+<body>
+    <!-- container section start -->
+    <section id="container" class="">
+
+        <header class="header dark-bg">
+            <div class="toggle-nav">
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+            </div>
+            <!--logo start-->
+            <a href='@Url.Action("Index", "Ticket")' class="logo">
+                My <span class="lite">Tasks</span>
+            </a>
+            <!--logo end-->
+            <div class="nav search-row" id="top_menu">
+                <!--  search form start -->
+                <ul class="nav top-menu">
+                    <li>
+                        <form class="navbar-form">
+                            <input id="TicketSearch" class="form-control" placeholder="Search" type="text">
+                        </form>
+                    </li>
+                </ul>
+                <!--  search form end -->
+            </div>
+            <div class="top-nav notification-row">
+                <!-- notificatoin dropdown start-->
+                <ul class="nav pull-right top-menu">
+                    <!-- user login dropdown start-->
+
+                        @Html.AntiForgeryToken()
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="profile-ava">
+                                    <img src="@Url.Content(User.Identity.AsClaimsIdentity().PictureFileNameAbsolutePath())" alt="" style="height: 32px;width: 32px"/>
+                                </span>
+                                <span class="username">@User.Identity.AsClaimsIdentity().FullName()</span>
+                                <b class="caret"></b>
+                            </a>
+
+                                <ul class="dropdown-menu extended logout">
+                                    <div class="log-arrow-up"></div>
+                                    <li class="eborder-top">
+                                        <a href='@Url.Action("MyProfile", "Manage")'>
+                                            <i class="icon_profile"></i>
+                                            <span>@Desktop.MyProfile</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href='@Url.Action("ChangePassword", "Manage")'>
+                                            <i class="icon_lock"></i>
+                                            <span>@Desktop.ChangePassword</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <a href="javascript:document.getElementById('logoutForm').submit()">@Desktop.LogOff</a>
+                                        }
+                                    </li>
+                                </ul>
+
+                        </li>
+
+                    <!-- user login dropdown end -->
+                </ul>
+                <!-- notificatoin dropdown end-->
+            </div>
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu">
+                    <li class="active">
+                        <a href='@Url.Action("Create", "Ticket")'>
+                            <i class="icon_lightbulb_alt"></i>
+                            <span>@Desktop.NewTicket</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href='@Url.Action("Index", "Ticket")'>
+                            <i class="icon_book"></i>
+                            <span>@Desktop.MyTickets</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href='@Url.Action("Index", "Dashboard")'>
+                            <i class="icon_house_alt"></i>
+                            <span>@Desktop.DashBoard</span>
+                        </a>
+                    </li>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Developer"))
+                    {
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_desktop"></i>
+                                <span>@Desktop.Setup</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                @if (User.IsInRole("Developer"))
+                                {
+                                    <li><a class="" href='@Url.Action("Index", "Install")'>@Desktop.DatabaseUpdate</a></li>
+                                    <li><a class="" href='@Url.Action("Index", "ApplicationSettings")'>@Desktop.ApplicationSettings</a></li>
+                                }
+                                <li><a class="" href='@Url.Action("Index", "UsersAdmin")'>@Desktop.UserAdminstration</a></li>
+                                <li><a class="" href='@Url.Action("Index", "Project")'>@Desktop.Projects</a></li>
+                                <li><a class="" href='@Url.Action("Index", "Customer")'>@Desktop.Customers</a></li>
+
+                            </ul>
+                        </li>
+                    }
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+                <!--overview start-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="container body-content">
+                            @RenderBody()
+                            <hr />
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+            </section>
+        </section>
+        <!--main content end-->
+    </section>
+    <!-- container section start -->
+    <!-- javascripts -->
+    
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#TicketSearch').autocomplete({
+            //open: function() {
+             
+            //    $(this).autocomplete('widget').css('z-index', 2000);
+            //    return false;
+            //},
+            source: function (request, response) {
+                $.ajax({
+                    url: window.applicationBaseUrl + 'api/TicketApi/TicketSearch',
+                    type: 'GET',
+                    cache: false,
+                    data: request,
+                    dataType: 'json',
+                    success: function (json) {
+                        // call autocomplete callback method with results  
+                        response($.map(json, function (ticket, val) {
+                            return {
+                                label: ticket.Title,
+                                value: ticket.TicketNumber
+                            }
+                        }));
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log('error', textStatus, errorThrown);
+                    }
+                });
+            },
+            minLength: 2,
+            select: function (event, ui) {
+                $('#TicketSearch').val(ui.item.label);
+                window.location.href = window.applicationBaseUrl + 'Ticket/TicketHistory?ticketNumber=' + ui.item.value;
+                return false;
+            }
+        })
+    })
+    </script> 
+</body>
+</html>

@@ -1,0 +1,35 @@
+﻿@using MyTasks.Localization.Desktop
+@model IEnumerable<MyTasks.Domain.Project>
+
+@{
+    ViewBag.Title = Desktop.Projects;
+}
+
+@{
+    var grid = new WebGrid(Model, canPage: true, rowsPerPage: 20);
+    grid.Pager(WebGridPagerModes.All);
+}
+
+<div style="margin-top: 20px" class="well bs-component">
+    <p>
+        @Html.ActionLink(Desktop.NewProject, "Create")
+    </p>
+    @grid.GetHtml(tableStyle: "table table-condensed GridView",
+        headerStyle: "GridViewHeader",
+        alternatingRowStyle: "GridViewRow",
+        selectedRowStyle: "GridViewRow",
+        columns: grid.Columns(
+            grid.Column("ProjectName", @Desktop.ProjectName),
+            grid.Column("Description", @Desktop.Description),
+            grid.Column("UsedCaption", @Desktop.IsUsed),
+            grid.Column(header: " ", format: (item) =>
+                new HtmlString(
+                    Html.ActionLink(@Desktop.Edit, "Edit", new {id = item.ProjectId}).ToString() + "  |" +
+                    Html.ActionLink(@Desktop.Delete, "Delete", new {id = item.ProjectId}).ToString()
+                    )
+                )
+            )
+        )
+</div>
+
+  

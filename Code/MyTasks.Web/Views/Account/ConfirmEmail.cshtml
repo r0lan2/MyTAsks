@@ -1,0 +1,17 @@
+﻿@using MyTasks.Localization.Desktop
+@using MyTasks.Web.HttpModules
+
+@{
+    ViewBag.Title = "Confirm Email";
+    Layout = "~/Views/Account/_GeneralAccountLayout.cshtml";
+}
+
+
+<div style="margin-top: 20px" class="well bs-component">
+    <div>
+        <p>
+            @Desktop.ThankYouForConfirmingYourEmail @Html.ActionLink(@Desktop.ClickHereToLogIn, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        </p>
+    </div>
+</div>
+

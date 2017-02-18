@@ -1,0 +1,2 @@
+﻿INSERT INTO applicationsettings (`ConfigurationKey`,`ConfigurationValue`,`DefaultValue`,`Description`,`LastUpdatedTime`) VALUES ('SenderEmail',null,'biglampnoreply@gmail.com','userName to send mails from useradministration pages',now());
+INSERT INTO applicationsettings (`ConfigurationKey`,`ConfigurationValue`,`DefaultValue`,`Description`,`LastUpdatedTime`) VALUES ('IssuesRecipientEmail',null,'biglamp.issues@gmail.com','mail address where issues are coming',now());

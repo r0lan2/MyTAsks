@@ -1,0 +1,35 @@
+﻿@using MyTasks.Localization.Desktop
+@model MyTasks.Web.Models.ApplicationUser
+
+@{
+    ViewBag.Title = @Desktop.UserDeletion;
+}
+
+<div style="margin-top: 20px" class="well bs-component">
+    <h3>@Desktop.DeleteMessage</h3>
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="col-md-2 control-label">
+                @Desktop.UserName
+            </label>
+            <div class="col-md-4 control-label" style="text-align: left">
+                @Html.DisplayFor(model => model.UserName)
+            </div>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button name="button" value="send" id="submit" class="btn btn-primary">@Desktop.Delete</button>
+                    &nbsp;&nbsp;<span style="vertical-align: bottom">  @Desktop.Or </span>&nbsp;&nbsp;
+                    @Html.ActionLink(Desktop.BackToList, "Index", "UsersAdmin", null, new { @style = "vertical-align: bottom;" })
+                </div>
+            </div>
+        }
+     
+    </div>
+    </div>
+
+

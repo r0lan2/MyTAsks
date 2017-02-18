@@ -1,0 +1,58 @@
+﻿
+@using MyTasks.Localization.Desktop
+@model MyTasks.Domain.DataContracts.TicketListItem
+
+<div class="col-md-1 portlets">
+
+</div>
+
+<div class="col-md-11 portlets">
+    <div class="panel panel-default">
+        <div class="panel-heading" style="background: #394a59; color: white;">
+            @if (@Model.IsFirstEdition)
+            {
+                <div class="pull-left">@Desktop.CreatedBy: @Model.OwnerUserName @Desktop.At @Model.LastUpdateDate.ToShortDateString() </div>
+            }
+            else
+            {
+                <div class="pull-left">@Desktop.UpdatedBy: @Model.OwnerUserName @Desktop.At @Model.LastUpdateDate.ToShortDateString() </div>
+            }
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="padd">
+                <div class="form quick-post">
+                    <form class="form-horizontal">
+                        <!-- Content -->
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <textarea class="form-control" id="@Model.TicketDetailId">@Model.Content </textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                @foreach (var item in Model.Files)
+                {
+                    <li>
+                        <a href="~/UploadedFiles/TicketFiles/@item.TicketDetailId/@(item.FileGuid + item.Extension)" download="@item.FileName">@item.FileName</a>
+                    </li>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        var contentId= "#" + @Model.TicketDetailId;
+     
+        $(contentId).summernote({
+            height: 100,
+            toolbar: false
+        });
+        $(contentId).summernote('disable');
+    });
+</script>

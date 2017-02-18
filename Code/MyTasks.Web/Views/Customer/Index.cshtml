@@ -1,0 +1,33 @@
+﻿@using MyTasks.Localization.Desktop
+@model IEnumerable<MyTasks.Domain.Customer>
+
+@{
+    ViewBag.Title = Desktop.Customers;
+}
+
+@{
+    var grid = new WebGrid(Model, canPage: true, rowsPerPage: 20);
+    grid.Pager(WebGridPagerModes.All);
+}
+
+<div style="margin-top: 20px" class="well bs-component">
+    <p>
+        @Html.ActionLink(Desktop.NewCustomer, "Create")
+    </p>
+    @grid.GetHtml(tableStyle: "table table-condensed GridView",
+        headerStyle: "GridViewHeader",
+        alternatingRowStyle: "GridViewRow",
+        selectedRowStyle: "GridViewRow",
+        columns: grid.Columns(
+            grid.Column("Name", @Desktop.CustomerName),
+            grid.Column("UsedCaption", @Desktop.IsUsed), 
+            grid.Column(header: " ", format: (item) =>
+                 new HtmlString(
+                     Html.ActionLink(@Desktop.Edit, "Edit", new { id = item.CustomerId }).ToString() + "  |" +
+                     Html.ActionLink(@Desktop.Delete, "Delete", new { id = item.CustomerId }).ToString()
+                     )
+                )
+            )
+        )
+</div>
+

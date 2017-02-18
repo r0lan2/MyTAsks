@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "title";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <h3>DashBoard</h3>
+            </header>
+            <div class="panel-body">
+                <div class="tab-pane" id="chartjs">
+                    <div class="row">
+                        <!-- Projects -->
+                        <div class="col-lg-6">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                </header>
+                                <div class="panel-body text-center">
+                                    <div id="chartProjectContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- Users -->
+                        <div class="col-lg-6">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                </header>
+                                <div class="panel-body text-center">
+                                    <div id="chartUserContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+@section scripts{
+
+    <script type="text/javascript">
+
+        $(document)
+            .ready(function() {
+                dataService.getProjectsSummary(drawProjectChart);
+                dataService.getUsersSummary(drawUserChart);
+            });
+
+        function drawProjectChart(projectSummaryData) {
+            var projects = _.sortBy(projectSummaryData, (item) => { return item.ProjectName; });
+            var openTickets = [];
+            var resolvedTickets = [];
+            var closedTickets = [];
+            _.forEach(projects, (project) => { openTickets.push(project.OpenTickets); });
+            _.forEach(projects, (project) => { resolvedTickets.push(project.ResolvedTickets); });
+            _.forEach(projects, (project) => { closedTickets.push(project.ClosedTickets); });
+            var projectNames = _.map(projectSummaryData, (item) => { return item.ProjectName; });
+
+            Highcharts.chart('chartProjectContainer',
+            {
+                title: {
+                    text: Resources.SummaryByProject
+                },
+                xAxis: {
+                    categories: projectNames
+                },
+                yAxis: {
+                    title: {
+                        text: ""
+                    }
+                },
+                legend: { enabled: true },
+                credits: { enabled: false },
+                series: [
+                    {
+                        type: 'column',
+                        name: Resources.Open,
+                        data: openTickets
+                    }, {
+                        type: 'column',
+                        name: Resources.Closed,
+                        data: closedTickets
+                    }, {
+                        type: 'column',
+                        name: Resources.Resoled,
+                        data: resolvedTickets
+                    }
+                ]
+            });
+        }
+
+
+        function drawUserChart(userSummaryData) {
+            var users = _.sortBy(userSummaryData, (item) => { return item.UserName; });
+            var openTickets = [];
+            var resolvedTickets = [];
+            var closedTickets = [];
+            _.forEach(users, (user) => { openTickets.push(user.OpenTickets); });
+            _.forEach(users, (user) => { resolvedTickets.push(user.ResolvedTickets); });
+            _.forEach(users, (user) => { closedTickets.push(user.ClosedTickets); });
+            var userNames = _.map(userSummaryData, (item) => { return item.UserName; });
+
+            Highcharts.chart('chartUserContainer',
+            {
+                title: {
+                    text: Resources.SummaryByUser
+                },
+                xAxis: {
+                    categories: userNames
+                },
+                yAxis: {
+                    title: {
+                        text: ""
+                    }
+                },
+                legend: { enabled: true },
+                credits: { enabled: false },
+                series: [
+                    {
+                        type: 'column',
+                        name: Resources.Open,
+                        data: openTickets
+                    }, {
+                        type: 'column',
+                        name: Resources.Closed,
+                        data: closedTickets
+                    }, {
+                        type: 'column',
+                        name: Resources.Resoled,
+                        data: resolvedTickets
+                    }
+                ]
+            });
+
+        }
+
+
+    </script>
+}

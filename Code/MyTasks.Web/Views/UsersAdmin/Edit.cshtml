@@ -1,0 +1,105 @@
+﻿@using MyTasks.Localization.Desktop
+@model MyTasks.Web.Models.EditUserViewModel
+
+@{
+    ViewBag.Title = Desktop.UserAdminUpdate;
+}
+
+<div style="margin-top: 20px" class="well bs-component">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>@Desktop.EditUser</h4>
+            <hr />
+            
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">
+                    @Desktop.Email
+                </label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.Email, new {@class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <label class="col-md-2 control-label">
+                    @Desktop.UserName
+                </label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @readonly = "readonly" })
+                    
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">
+                    @Desktop.FullName
+                </label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FullName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">
+                    @Desktop.Address
+                </label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">
+                    @Desktop.Dni
+                </label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.Dni, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">
+                    @Desktop.SelectUserRole
+                </label>
+                <div class="col-md-4">
+                    @Html.DropDownList("RoleId", ViewBag.RoleList as SelectList, @Desktop.SelectARole, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoleId, "*")
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">
+                    @Desktop.SelectLanguage
+                </label>
+                <div class="col-md-4">
+                    @Html.DropDownList("Language", ViewBag.LanguageList as SelectList, @Desktop.SelectALanguage, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Language, "*")
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button name="button" value="send" class="btn btn-primary">@Desktop.Update</button>
+                    &nbsp;&nbsp;<span style="vertical-align: bottom">  @Desktop.Or </span>&nbsp;&nbsp;
+                    @Html.ActionLink(Desktop.BackToList, "Index", "UsersAdmin", null, new { @style = "vertical-align: bottom;" })
+                </div>
+            </div>
+            @Html.ValidationSummary()
+        </div>
+    }
+
+</div>
+
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

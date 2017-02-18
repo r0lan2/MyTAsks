@@ -1,0 +1,192 @@
+﻿@using System.Globalization
+@using System.Threading
+@model MyTasks.Web.Models.ProfileViewModel
+@using MyTasks.Localization.Desktop
+
+@{
+    ViewBag.Title = Desktop.UserSettings;
+}
+<div class="row">
+    <!-- profile-widget -->
+    <div class="col-lg-12">
+        <div class="profile-widget profile-widget-info">
+            <div class="panel-body">
+                <div class="col-lg-2 col-sm-2">
+                    <h4>@Model.FullName </h4>
+                    <div class="follow-ava">
+                        @if (Model.HasPicture)
+                        {
+                            <img src="@Url.Content(Model.PicturePath)" alt="Image"/>
+                        }
+                        else
+                        {
+                            <img src="~/Content/images/nobody_m.original.jpg" alt="">
+                        }
+                    </div>
+                    <h6></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading tab-bg-info">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#profile">
+                            <i class="icon-user"></i>
+                            @Desktop.Profile
+                        </a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#edit-profile">
+                            <i class="icon-envelope"></i>
+                            @Desktop.EditProfile
+                        </a>
+                    </li>
+                </ul>
+            </header>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <!-- profile -->
+                    <div id="profile" class="tab-pane active">
+                        <section class="panel">
+                            <div class="panel-body bio-graph-info">
+                                <div class="row">
+                                    <div class="bio-row">
+                                        <p><span>@Desktop.UserName </span>: @Model.UserName </p>
+                                    </div>
+                                    <div class="bio-row">
+                                        <p><span>@Desktop.FullName </span>: @Model.FullName</p>
+                                    </div>
+                                    <div class="bio-row">
+                                        <p><span>@Desktop.Dni</span>: @Model.Dni</p>
+                                    </div>
+                                    <div class="bio-row">
+                                        <p><span>@Desktop.Address </span>: @Model.Address</p>
+                                    </div>
+                                    <div class="bio-row">
+                                        <p><span>@Desktop.Role </span>: @Model.RoleName</p>
+                                    </div>
+                                    <div class="bio-row">
+                                        <p><span>@Desktop.Email </span>:@Model.Email</p>
+                                    </div>
+                                    <div class="bio-row">
+                                        <p><span>@Desktop.Phone </span>: @Model.PhoneNumber</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <div class="row">
+                            </div>
+                        </section>
+                    </div>
+                    <!-- edit-profile -->
+                    <div id="edit-profile" class="tab-pane">
+                        <section class="panel">
+                            <div class="panel-body bio-graph-info">
+                                @using (Html.BeginForm("MyProfile","Manage", method: FormMethod.Post, htmlAttributes: new { @encType = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-horizontal">
+                                        <hr />
+                                        @Html.ValidationSummary(true)
+                                        @Html.HiddenFor(model => model.Id)
+
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                                @Desktop.Email
+                                            </label>
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @readonly = "readonly" })
+                                                @Html.ValidationMessageFor(model => model.Email)
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <label class="col-md-2 control-label">
+                                                @Desktop.UserName
+                                            </label>
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @readonly = "readonly" })
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                                @Desktop.FullName
+                                            </label>
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                                @Desktop.Address
+                                            </label>
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                                @Desktop.Dni
+                                            </label>
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(m => m.Dni, new {@class = "form-control"})
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                                @Desktop.Phone
+                                            </label>
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                                @Desktop.SelectLanguage
+                                            </label>
+                                            <div class="col-md-4">
+                                                @Html.DropDownList("Language", null, htmlAttributes: new {@class = "form-control"})
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                                @Desktop.UploadYourPhoto
+                                            </label>
+                                            <div class="col-md-4">
+                                                <input type="file" name="file" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <button name="button" value="send" class="btn btn-primary">@Desktop.Update</button>
+                                                &nbsp;&nbsp;<span style="vertical-align: bottom">  @Desktop.Or </span>&nbsp;&nbsp;
+                                                @Html.ActionLink(Desktop.Cancel, "Index", "Ticket", null, new { @style = "vertical-align: bottom;" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                }
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,3 @@
+﻿INSERT INTO applicationsettings (`ConfigurationKey`,`ConfigurationValue`,`DefaultValue`,`Description`,`LastUpdatedTime`) VALUES ('FileStoreBasePath',null,'UploadedFiles\/','base path to save files',now());
+INSERT INTO applicationsettings (`ConfigurationKey`,`ConfigurationValue`,`DefaultValue`,`Description`,`LastUpdatedTime`) VALUES ('FileStoreTicketFiles',null,'TicketFiles\/','base path to save files related with tickets',now());
+INSERT INTO applicationsettings (`ConfigurationKey`,`ConfigurationValue`,`DefaultValue`,`Description`,`LastUpdatedTime`) VALUES ('FileStoreProfilesFiles',null,'ProfilesFiles\/','base path to save files with profiles',now());
