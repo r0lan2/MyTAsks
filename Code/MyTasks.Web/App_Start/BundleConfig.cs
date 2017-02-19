@@ -39,7 +39,7 @@ namespace MyTasks.Web
 
             bundles.Add(new ScriptBundle("~/bundles/niceadmin").Include(
           "~/Scripts/adminTemplate/jquery.scrollTo.min.js",
-          "~/Scripts/adminTemplate/jquery.nicescroll.js",
+          //"~/Scripts/adminTemplate/jquery.nicescroll.js",
           "~/Scripts/adminTemplate/scripts.js"
           ));
 
