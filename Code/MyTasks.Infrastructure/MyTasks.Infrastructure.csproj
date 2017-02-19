@@ -75,13 +75,13 @@
     <Compile Include="Security\PasswordGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MyTasks.Localization\MyTasks.Localization.csproj">
       <Project>{84a62a04-0c58-44b6-86d8-f49c9cfb7a27}</Project>
       <Name>MyTasks.Localization</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
