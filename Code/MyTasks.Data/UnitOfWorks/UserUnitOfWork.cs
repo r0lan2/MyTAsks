@@ -48,11 +48,25 @@ namespace MyTasks.Data.UnitOfWorks
             return RoleRepository.All().FirstOrDefault(r => r.Name == "ProjectManager");
         }
 
+        public Roles GetUserRole()
+        {
+            return RoleRepository.All().FirstOrDefault(r => r.Name == "User");
+        }
+
+
         public List<Users> GetProjectManagers()
         {
             var role = GetProjectRole();
             return GetUsersByRole(role.Id);
         }
+
+        public List<Users> GetNormalUsers()
+        {
+            var role = GetUserRole();
+            return GetUsersByRole(role.Id);
+        }
+
+
 
         public List<Users> GetUsersByRole(string roleId)
         {

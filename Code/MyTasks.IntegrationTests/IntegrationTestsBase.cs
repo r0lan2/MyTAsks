@@ -28,45 +28,33 @@ namespace MyTasks.IntegrationTests
         }
 
 
-        public void InsertCustomers()
+        public void InsertUsers()
         {
-            Database.Execute(commandText: "INSERT INTO customer (`Name`) VALUES ('AquaChile');", parameters: null);
-            Database.Execute(commandText: "INSERT INTO customer (`Name`) VALUES ('Marine Harvest');", parameters: null);
+            Database.Execute(commandText: "INSERT INTO customer (`Name`) VALUES ('Client A');", parameters: null);
+            Database.Execute(commandText: "INSERT INTO customer (`Name`) VALUES ('Client B');", parameters: null);
+            Database.Execute(commandText: "INSERT INTO customer (`Name`) VALUES ('Client C');", parameters: null);
+            Database.Execute(commandText: "INSERT INTO customer (`Name`) VALUES ('Client D');", parameters: null);
+            Database.Execute(commandText: "INSERT INTO customer (`Name`) VALUES ('Client E');", parameters: null);
+            Database.Execute(commandText: "INSERT INTO customer (`Name`) VALUES ('Client F');", parameters: null);
+            Database.Execute(commandText: "INSERT INTO customer (`Name`) VALUES ('Client G');", parameters: null);
         }
 
-        public void InsertPriorities()
-        {
-            Database.Execute(commandText: "INSERT INTO priority (`Name`) VALUES ('Alta');", parameters: null);
-            Database.Execute(commandText: "INSERT INTO priority (`Name`) VALUES ('Media');", parameters: null);
-            Database.Execute(commandText: "INSERT INTO priority (`Name`) VALUES ('Baja');", parameters: null);
-        }
+       
+        //public void DeleteProjects()
+        //{
+        //    Database.Execute(commandText: "delete from project;", parameters: null);
+        //}
 
-        public void DeletePriorities()
-        {
-            Database.Execute(commandText: "delete from priority;", parameters: null);
-        }
-
-        public void DeleteCustomers()
-        {
-            Database.Execute(commandText: "delete from customer;", parameters: null);
-        }
+        //public void CreateNewTestProject(int customerId)
+        //{
+        //    Database.Execute(commandText: "INSERT INTO project (`CustomerId`,`ProjectName`,`Description`) VALUES (" +  customerId.ToString() + ",'Test Project','Test Project');", parameters: null);
+        //}
 
 
-        public void DeleteProjects()
-        {
-            Database.Execute(commandText: "delete from project;", parameters: null);
-        }
-
-        public void CreateNewTestProject(int customerId)
-        {
-            Database.Execute(commandText: "INSERT INTO project (`CustomerId`,`ProjectName`,`Description`) VALUES (" +  customerId.ToString() + ",'Test Project','Test Project');", parameters: null);
-        }
-
-
-        public void DeleteTickets()
-        {
-            Database.Execute(commandText: "delete from ticket;", parameters: null);
-        }
+        //public void DeleteTickets()
+        //{
+        //    Database.Execute(commandText: "delete from ticket;", parameters: null);
+        //}
 
 
     }

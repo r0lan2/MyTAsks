@@ -19,6 +19,11 @@ namespace MyTasks.Data.UnitOfWorks
         public ProjectRepository ProjectRepository { get; set; }
         public GenericRepository<IWorkinghoursDataContext, Area> AreasRepository { get; set; }
         public GenericRepository<IWorkinghoursDataContext, Customer> CustomerRepository { get; set; }
+
+        public GenericRepository<IWorkinghoursDataContext, Users> UserRepository { get; set; }
+        public GenericRepository<IWorkinghoursDataContext, UserRoles> UserRoleRepository { get; set; }
+        public GenericRepository<IWorkinghoursDataContext, Roles> RoleRepository { get; set; }
+
         private ProjectUnitOfWorkValidator _validator;
 
         public ProjectUnitOfWork(IWorkinghoursDataContext dataContext)
@@ -27,8 +32,9 @@ namespace MyTasks.Data.UnitOfWorks
             ProjectRepository = new ProjectRepository(Context);
             CustomerRepository = new GenericRepository<IWorkinghoursDataContext, Customer>(Context);
             AreasRepository= new GenericRepository<IWorkinghoursDataContext, Area>(Context);
-
-
+            UserRepository = new GenericRepository<IWorkinghoursDataContext, Users>(Context);
+            UserRoleRepository= new GenericRepository<IWorkinghoursDataContext, UserRoles>(Context);
+            RoleRepository= new GenericRepository<IWorkinghoursDataContext, Roles>(Context);
         }
 
         public ProjectUnitOfWork()
@@ -37,6 +43,9 @@ namespace MyTasks.Data.UnitOfWorks
             ProjectRepository = new ProjectRepository(Context);
             CustomerRepository = new GenericRepository<IWorkinghoursDataContext, Customer>(Context);
             AreasRepository = new GenericRepository<IWorkinghoursDataContext, Area>(Context);
+            UserRepository = new GenericRepository<IWorkinghoursDataContext, Users>(Context);
+            UserRoleRepository = new GenericRepository<IWorkinghoursDataContext, UserRoles>(Context);
+            RoleRepository = new GenericRepository<IWorkinghoursDataContext, Roles>(Context);
         }
 
         public void DeleteProject(int projectId)
@@ -59,9 +68,7 @@ namespace MyTasks.Data.UnitOfWorks
 
         public IQueryable<Project> GetProjectsByCustomer(int? selectCustomerId)
         {
-            //int customerId = selectCustomerId.GetValueOrDefault();
-            //IQueryable<Project> projects =ProjectRepository.Where(c => !selectCustomerId.HasValue || c.CustomerId == customerId).AsQueryable();
-            var projects = ProjectRepository.GetProjects();
+           var projects = ProjectRepository.GetProjects();
             var projectList = projects.OrderBy(d => d.ProjectId).ToList();
 
             return projectList.AsQueryable();
@@ -93,10 +100,7 @@ namespace MyTasks.Data.UnitOfWorks
             Context.SaveChanges();
         }
 
-        public void SaveProject(Project proj)
-        {
-
-        }
+      
 
     }
 }
