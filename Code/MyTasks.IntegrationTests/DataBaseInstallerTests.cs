@@ -14,15 +14,13 @@ namespace MyTasks.IntegrationTests
         [Test]
         public void CleanInstallationFromScrath()
         {
-            var rootConnectionString = "server=localhost;user=Developer;port=3306;password=holamundo;"; ;
-            DatabaseInstallerByObject.CreateAndBuildDatabase(rootConnectionString, ConnectionString);
+            DatabaseInstallerByObject.CreateAndBuildDatabase(RootConnectionString, ConnectionString);
         }
 
         [Test]
         public void DeleteAndCreateDatabase()
         {
-            var rootConnectionString = "server=localhost;user=Developer;port=3306;password=holamundo;"; ;
-            DatabaseInstallerByObject.DeleteAndCreateDatabase(rootConnectionString, ConnectionString);
+            DatabaseInstallerByObject.DeleteAndCreateDatabase(RootConnectionString, ConnectionString);
         }
 
     }

@@ -27,6 +27,11 @@ namespace MyTasks.IntegrationTests
             get { return MyTasks.Infrastructure.Configuration.Application.ConnectionString; }
         }
 
+        public string RootConnectionString
+        {
+            get { return MyTasks.Infrastructure.Configuration.Application.RootConnectionString; }
+        }
+
 
         public void InsertUsers()
         {
