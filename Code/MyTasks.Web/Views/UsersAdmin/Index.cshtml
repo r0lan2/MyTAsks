@@ -1,5 +1,5 @@
 ﻿@using MyTasks.Localization.Desktop
-@model IEnumerable<MyTasks.Web.Models.ApplicationUser>
+@model IEnumerable<MyTasks.Domain.DataContracts.UserDTO>
 
 @{
     ViewBag.Title = Desktop.UserAdminList;
@@ -25,6 +25,7 @@
         columns: grid.Columns(
             grid.Column("UserName", @Desktop.UserName),
             grid.Column("Email", @Desktop.Email),
+            grid.Column("RoleName", @Desktop.Role),
             grid.Column(header: " ", format: (item) =>
                 new HtmlString(
                     Html.ActionLink(@Desktop.Edit, "Edit", new {id = item.Id}).ToString() + "  |" +

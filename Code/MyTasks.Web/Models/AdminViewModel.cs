@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using BigLamp.AspNet.Identity.MySQL;
 using MyTasks.Localization.Desktop;
 
 namespace MyTasks.Web.Models
@@ -45,4 +46,9 @@ namespace MyTasks.Web.Models
 
         public IEnumerable<SelectListItem> RolesList { get; set; }
     }
+
+    //public class ListUserViewModel: IdentityUser
+    //{
+    //    public string RoleName { get; set; }
+    //}
 }

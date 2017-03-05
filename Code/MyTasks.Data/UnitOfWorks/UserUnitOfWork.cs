@@ -67,6 +67,22 @@ namespace MyTasks.Data.UnitOfWorks
         }
 
 
+        public List<UserDTO> GetUsers()
+        {
+            var users = (from u in UserRepository.All()
+                         join ur in UserRoleRepository.All() on u.Id equals ur.UserId
+                         join r in RoleRepository.All() on ur.RoleId equals r.Id
+                         select new UserDTO
+                         {
+                             UserName = u.UserName,
+                             RoleName = r.Name,
+                             Email = u.Email,
+                             Id = u.Id
+                         }).ToList();
+            return users;
+        }
+
+
 
         public List<Users> GetUsersByRole(string roleId)
         {

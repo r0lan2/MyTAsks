@@ -102,6 +102,7 @@
     <Compile Include="DataContracts\TicketHistoryData.cs" />
     <Compile Include="DataContracts\TicketListItem.cs" />
     <Compile Include="DataContracts\TicketSearchResult.cs" />
+    <Compile Include="DataContracts\UserDTO.cs" />
     <Compile Include="DataContracts\UserSummary.cs" />
     <Compile Include="Entities\ApplicationSettings.cs" />
     <Compile Include="Entities\Area.cs" />

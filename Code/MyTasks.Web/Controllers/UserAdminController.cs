@@ -11,6 +11,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using MyTasks.Data.UnitOfWorks;
 using MyTasks.Infrastructure.Mail;
 using MyTasks.Web.Extensions;
 using MyTasks.Web.Infrastructure.Localization;
@@ -20,6 +21,8 @@ namespace MyTasks.Web.Controllers
     [Authorize(Roles = "Admin,Developer")]
     public class UsersAdminController : BaseController
     {
+        private UserUnitOfWork unitOfWork = new UserUnitOfWork();
+
         public UsersAdminController()
         {
         }
@@ -58,9 +61,11 @@ namespace MyTasks.Web.Controllers
 
         //
         // GET: /Users/
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await UserManager.Users.ToList().AsyncToList());
+            var users = unitOfWork.GetUsers();
+            return View(users);
+
         }
 
        
