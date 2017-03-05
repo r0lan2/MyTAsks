@@ -250,6 +250,7 @@
     <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Controllers\WorkingOnController.cs" />
+    <Compile Include="Extensions\MultipleButtonAttribute.cs" />
     <Compile Include="Extensions\UserExtensions.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
@@ -263,10 +264,10 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\BugReportInfo.cs" />
+    <Compile Include="Models\DemoViewModel.cs" />
     <Compile Include="Models\FileViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\UserAdminInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\EmailService.cs" />
     <Compile Include="Security\Web\AllowAnonymousOnLocalHost.cs" />

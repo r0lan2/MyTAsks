@@ -6,7 +6,9 @@ using BigLamp.DatabaseInstaller;
 using BigLamp.DatabaseInstaller.Exceptions;
 using MyTasks.Data.UnitOfWorks;
 using MyTasks.Localization.Desktop;
+using MyTasks.Web.Extensions;
 using MyTasks.Web.Infrastructure.Configuration;
+using MyTasks.Web.Models;
 
 namespace MyTasks.Web.Controllers
 {
@@ -47,7 +49,8 @@ namespace MyTasks.Web.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult InstallDatabase()
+        [MultipleButton(Name = "action", Argument = "CreateInstallDatabase")]
+        public ActionResult CreateInstallDatabase()
         {
             try
             {
@@ -91,6 +94,70 @@ namespace MyTasks.Web.Controllers
             }
         }
 
+
+        [AllowAnonymous]
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "InstallDatabase")]
+        public ActionResult InstallDatabase()
+        {
+            try
+            {
+              
+                var connectionString = MyTasks.Infrastructure.Configuration.Application.ConnectionString;
+                DatabaseInstallerByObject.BuildDatabase(DatabaseInstallerByObject.ReadKeyFromPosition.Prefix, connectionString);
+
+                TempData["InstallResult"] = new UpdateResult()
+                {
+                    IsSucceed = true,
+                    ResultMessage = Desktop.DatabaseInstalled
+                };
+                MvcApplication.ApplicationSettings =
+                    ApplicationSettingContainer.Create(unitOfWork.ApplicationSettingsRepository.All().ToList());
+                return RedirectToAction("FirstInstall");
+             
+            }
+            catch (DatabaseInstallerException dbException)
+            {
+                TempData["InstallResult"] = new UpdateResult()
+                {
+                    IsSucceed = false,
+                    ResultMessage = Desktop.DatabaseInstallError + ":" + dbException.Message
+                };
+                return RedirectToAction("FirstInstall");
+
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "CreateDemo")]
+        public ActionResult CreateDemo()
+        {
+            try
+            {
+
+                var viewModel= new DemoViewModel();
+                viewModel.RunDemoData();
+
+                TempData["InstallResult"] = new UpdateResult()
+                {
+                    IsSucceed = true,
+                    ResultMessage = Desktop.DemoIsInstalled
+                };
+                return RedirectToAction("FirstInstall");
+
+            }
+            catch (DatabaseInstallerException dbException)
+            {
+                TempData["InstallResult"] = new UpdateResult()
+                {
+                    IsSucceed = false,
+                    ResultMessage = Desktop.DemoInstallationError + ":" + dbException.Message
+                };
+                return RedirectToAction("FirstInstall");
+
+            }
+        }
 
 
         [HttpPost]

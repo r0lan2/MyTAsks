@@ -1,30 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Text;
-using System.Threading.Tasks;
-using MyTasks.Data;
+using System.Web;
 using MyTasks.Data.UnitOfWorks;
 using MyTasks.Domain;
 using MyTasks.Domain.DataContracts;
 using MyTasks.Infrastructure;
-using NUnit.Framework;
 
-namespace MyTasks.IntegrationTests
+namespace MyTasks.Web.Models
 {
-    [TestFixture]
-    public class ProjectUnitOfWorkTests : IntegrationTestsBase
+    public class DemoViewModel
     {
-        [SetUp]
-        public void InsertInitProjectData()
-        {
-           
-        }
-        
-        
-        [Test]
-        public void BulkDataDemo()
+
+        public void RunDemoData()
         {
             AddNormalUsers();
             AddProjectManagerUsers();
@@ -33,23 +21,21 @@ namespace MyTasks.IntegrationTests
             AddDemoTickets();
         }
 
-
-
-        public void CreateUser(string userName, string roleName)
+        private void CreateUser(string userName, string roleName)
         {
             var unitOfwork = new ProjectUnitOfWork();
-            var userRole= unitOfwork.RoleRepository.Where(r => r.Name == roleName).FirstOrDefault();
+            var userRole = unitOfwork.RoleRepository.Where(r => r.Name == roleName).FirstOrDefault();
             var newUser = new Users()
             {
-                Id =  Guid.NewGuid().ToString(),
+                Id = Guid.NewGuid().ToString(),
                 Email = userName + "@mytasks.cl",
                 EmailConfirmed = true,
                 PasswordHash = "ADggy6naWtPgOdgAWhwGKQj1EUtBWuRkpYXnUpYXN5+ac2D+2AieripppwYT4jiKIA==",
-                SecurityStamp= "78b9c51e-a6ff-47d3-b54b-84ab7223b157",
+                SecurityStamp = "78b9c51e-a6ff-47d3-b54b-84ab7223b157",
                 PhoneNumber = "32323111",
                 PhoneNumberConfirmed = true,
                 TwoFactorEnabled = false,
-                LockoutEndDateUtc = new DateTime(2016,03,18),
+                LockoutEndDateUtc = new DateTime(2016, 03, 18),
                 LockoutEnabled = false,
                 AccessFailedCount = 0,
                 UserName = userName,
@@ -70,17 +56,17 @@ namespace MyTasks.IntegrationTests
             unitOfwork.SaveChanges();
         }
 
-        public void InsertNewProject(string projectName)
-         {
-             Random r = new Random();
-            var unitOfwork= new ProjectUnitOfWork();
+        private void InsertNewProject(string projectName)
+        {
+            Random r = new Random();
+            var unitOfwork = new ProjectUnitOfWork();
             var userUnitOfWork = new UserUnitOfWork();
             var projectManagers = userUnitOfWork.GetProjectManagers();
-             var projectManagersCount = projectManagers.Count;
+            var projectManagersCount = projectManagers.Count;
             var customers = unitOfwork.CustomerRepository.All().ToList();
             var customerCount = customers.Count;
             var customerIndex = r.Next(0, customerCount);
-             var projectManagerIndex = r.Next(0, projectManagersCount);
+            var projectManagerIndex = r.Next(0, projectManagersCount);
             var newProject = new Project
             {
                 CustomerId = customers[customerIndex].CustomerId,
@@ -97,7 +83,7 @@ namespace MyTasks.IntegrationTests
             unitOfwork.SaveChanges();
         }
 
-        public void AddDemoCustomer(string customerName)
+        private void AddDemoCustomer(string customerName)
         {
             var unitOfwork = new ProjectUnitOfWork();
             var newCustomer = new Customer
@@ -108,7 +94,7 @@ namespace MyTasks.IntegrationTests
             unitOfwork.SaveChanges();
         }
 
-        public void AddNormalUsers()
+        private void AddNormalUsers()
         {
             var names = GetNames();
 
@@ -116,11 +102,11 @@ namespace MyTasks.IntegrationTests
             for (int i = 0; i < numberOfUsers; i++)
             {
                 var userName = names.Pop();
-                CreateUser(userName,"User");
+                CreateUser(userName, "User");
             }
         }
 
-        public void AddProjectManagerUsers()
+        private void AddProjectManagerUsers()
         {
             var names = GetProjectManagerNames();
 
@@ -132,7 +118,7 @@ namespace MyTasks.IntegrationTests
             }
         }
 
-        public void AddDemoCustomers()
+        private void AddDemoCustomers()
         {
             var numberOfCustomers = 10;
             var customerNames = GetCustomers();
@@ -142,8 +128,8 @@ namespace MyTasks.IntegrationTests
                 AddDemoCustomer(customerName);
             }
         }
-        
-        public void AddDemoProjects()
+
+        private void AddDemoProjects()
         {
             var projectNames = GetProjects();
             var numberOfProjects = 10;
@@ -154,7 +140,7 @@ namespace MyTasks.IntegrationTests
             }
         }
 
-        public void AddDemoTickets()
+        private void AddDemoTickets()
         {
             var NumberOfTickets = 500;
             for (int i = 0; i < NumberOfTickets; i++)
@@ -163,12 +149,12 @@ namespace MyTasks.IntegrationTests
             }
         }
 
-        public void AddDemoTicket()
+        private void AddDemoTicket()
         {
             var ticketUnitOfwork = new TicketUnitOfWork();
-            var userUnitOfwork= new UserUnitOfWork();
+            var userUnitOfwork = new UserUnitOfWork();
             var random = new Random();
-        
+
             var projects = ticketUnitOfwork.ProjectRepository.All().ToList();
             var defaultProjectId = projects[random.Next(0, projects.Count)].ProjectId;
             var areas = ticketUnitOfwork.AreaRepository.Where(a => a.ProjectId == defaultProjectId).ToList();
@@ -179,7 +165,7 @@ namespace MyTasks.IntegrationTests
             var defaultPriorityId = priorities[random.Next(0, priorities.Count)].PriorityId;
             var normalUsers = userUnitOfwork.GetNormalUsers().ToList();
             var projectManagers = userUnitOfwork.GetProjectManagers().ToList();
-            var statusId = (int) TicketStatus.Open;
+            var statusId = (int)TicketStatus.Open;
             var defaultUserId = normalUsers[random.Next(0, normalUsers.Count)].Id;
             var ownerId = projectManagers[random.Next(0, projectManagers.Count)].Id;
 
@@ -194,14 +180,14 @@ namespace MyTasks.IntegrationTests
                 CreatedBy = ownerId,
                 AreaId = defaultAreaId,
                 IsBillable = false
-                
+
             };
             ticketUnitOfwork.NewTicket(data);
 
 
         }
 
-        public static Stack<string> GetNames()
+        private static Stack<string> GetNames()
         {
             Stack<string> stack = new Stack<string>();
             stack.Push("juan"); stack.Push("felipe"); stack.Push("hugo"); stack.Push("jose");
@@ -210,7 +196,7 @@ namespace MyTasks.IntegrationTests
             return stack;
         }
 
-        public static Stack<string> GetProjectManagerNames()
+        private static Stack<string> GetProjectManagerNames()
         {
             Stack<string> stack = new Stack<string>();
             stack.Push("santiago"); stack.Push("gaspar"); stack.Push("gabriel"); stack.Push("franco"); stack.Push("ignacio");
@@ -218,7 +204,7 @@ namespace MyTasks.IntegrationTests
             return stack;
         }
 
-        public static Stack<string> GetCustomers()
+        private static Stack<string> GetCustomers()
         {
             Stack<string> stack = new Stack<string>();
             stack.Push("Amazon"); stack.Push("Cocacola"); stack.Push("Biglamp"); stack.Push("SoftLand");
@@ -227,7 +213,7 @@ namespace MyTasks.IntegrationTests
             return stack;
         }
 
-        public static Stack<string> GetProjects()
+        private static Stack<string> GetProjects()
         {
             Stack<string> stack = new Stack<string>();
             stack.Push("MyTasks"); stack.Push("MyCarStore"); stack.Push("Move Servers"); stack.Push("Project X");
@@ -235,10 +221,6 @@ namespace MyTasks.IntegrationTests
             stack.Push("Project A"); stack.Push("Project B");
             return stack;
         }
-
-
-
-
 
     }
 }

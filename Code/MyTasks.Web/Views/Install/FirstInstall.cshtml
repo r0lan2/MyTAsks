@@ -6,15 +6,20 @@
     ViewBag.Title = Desktop.MyTasksInstallation;
 }
 
-@using (Html.BeginForm("InstallDatabase", "Install", FormMethod.Post))
-{
+<form action="" method="post">
     <div style="margin-top: 20px" class="well bs-component">
         <div class="row">
-            <button class="btn btn-success" id="btnInstall" type="submit">
-                @Desktop.InstallDb
-            </button>
+            <div class="col-lg-3">
+                <input type="submit" class="btn btn-success" value="Create and install Db" name="action:CreateInstallDatabase" /> @*@Desktop.CreateAndInstallDb*@
+            </div>
+            <div class="col-lg-3">
+                <input type="submit" class="btn btn-success" value="Install Db" name="action:InstallDatabase" /> @*@Desktop.InstallDb*@
+            </div>
+            <div class="col-lg-3">
+                <input type="submit" class="btn btn-success" value="Create demo" name="action:CreateDemo" /> @*@Desktop.CreateDemo*@
+            </div>
         </div>
-        <br/>
+        <br />
         @if (ViewBag.ShowUpdateMessage)
         {
             <div class="row">
@@ -35,8 +40,9 @@
                 }
             </div>
         }
-
     </div>
-}
+</form>
+    
+
 
 

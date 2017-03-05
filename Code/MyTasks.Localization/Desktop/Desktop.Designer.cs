@@ -331,11 +331,29 @@ namespace MyTasks.Localization.Desktop {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create and Install Db.
+        /// </summary>
+        public static string CreateAndInstallDb {
+            get {
+                return ResourceManager.GetString("CreateAndInstallDb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created by.
         /// </summary>
         public static string CreatedBy {
             get {
                 return ResourceManager.GetString("CreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CreateDemo.
+        /// </summary>
+        public static string CreateDemo {
+            get {
+                return ResourceManager.GetString("CreateDemo", resourceCulture);
             }
         }
         
@@ -412,7 +430,7 @@ namespace MyTasks.Localization.Desktop {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Congratulations! The database was installed..
+        ///   Looks up a localized string similar to Congratulations! The database is installed..
         /// </summary>
         public static string DatabaseInstalled {
             get {
@@ -516,6 +534,24 @@ namespace MyTasks.Localization.Desktop {
         public static string DeleteProjectMessage {
             get {
                 return ResourceManager.GetString("DeleteProjectMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error in demo installation.
+        /// </summary>
+        public static string DemoInstallationError {
+            get {
+                return ResourceManager.GetString("DemoInstallationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Congratulations! The demo is installed..
+        /// </summary>
+        public static string DemoIsInstalled {
+            get {
+                return ResourceManager.GetString("DemoIsInstalled", resourceCulture);
             }
         }
         

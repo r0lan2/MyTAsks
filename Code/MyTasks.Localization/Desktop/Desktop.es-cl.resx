@@ -627,4 +627,16 @@
   <data name="SummaryByUser" xml:space="preserve">
     <value>Resumen por usuario</value>
   </data>
+  <data name="CreateAndInstallDb" xml:space="preserve">
+    <value>Crear e instalar Bd</value>
+  </data>
+  <data name="CreateDemo" xml:space="preserve">
+    <value>Crear demo</value>
+  </data>
+  <data name="DemoInstallationError" xml:space="preserve">
+    <value>Error en la instalacion del demo</value>
+  </data>
+  <data name="DemoIsInstalled" xml:space="preserve">
+    <value>Felicitaciones el demo fue instalado</value>
+  </data>
 </root>

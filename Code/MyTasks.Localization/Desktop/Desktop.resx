@@ -331,7 +331,7 @@
     <value>Ops! Something happens with our servers. Please contact with our administrators.</value>
   </data>
   <data name="DatabaseInstalled" xml:space="preserve">
-    <value>Congratulations! The database was installed.</value>
+    <value>Congratulations! The database is installed.</value>
   </data>
   <data name="DatabaseInstallError" xml:space="preserve">
     <value>Errors during the database installation</value>
@@ -626,5 +626,17 @@
   </data>
   <data name="SummaryByUser" xml:space="preserve">
     <value>Summary by user</value>
+  </data>
+  <data name="CreateAndInstallDb" xml:space="preserve">
+    <value>Create and Install Db</value>
+  </data>
+  <data name="CreateDemo" xml:space="preserve">
+    <value>CreateDemo</value>
+  </data>
+  <data name="DemoInstallationError" xml:space="preserve">
+    <value>Error in demo installation</value>
+  </data>
+  <data name="DemoIsInstalled" xml:space="preserve">
+    <value>Congratulations! The demo is installed.</value>
   </data>
 </root>
