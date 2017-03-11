@@ -29,7 +29,7 @@ namespace MyTasks.Localization.Desktop {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Desktop() {
+        public Desktop() {
         }
         
         /// <summary>
@@ -1200,6 +1200,15 @@ namespace MyTasks.Localization.Desktop {
         public static string ScriptFileName {
             get {
                 return ResourceManager.GetString("ScriptFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
             }
         }
         

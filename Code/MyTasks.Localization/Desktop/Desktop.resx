@@ -639,4 +639,7 @@
   <data name="DemoIsInstalled" xml:space="preserve">
     <value>Congratulations! The demo is installed.</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
 </root>

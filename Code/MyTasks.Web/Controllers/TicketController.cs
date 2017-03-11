@@ -29,6 +29,21 @@ namespace MyTasks.Web.Controllers
             return View(tickets);
         }
 
+        [HttpGet]
+        public ActionResult TicketSearch()
+        {
+            PopulateDropdowns();
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult RunSearch(FormCollection formCollection)
+        {
+            return View("TicketSearch", new List<TicketListItem>());
+        }
+
+
 
         public ActionResult Create()
         {
