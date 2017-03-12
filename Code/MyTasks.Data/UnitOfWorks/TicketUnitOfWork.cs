@@ -173,9 +173,9 @@ namespace MyTasks.Data.UnitOfWorks
             return GetExtendedTickes(tickets);
         }
 
-        public List<TicketListItem> RunSearch(int? projectId)
+        public List<TicketListItem> RunSearch(int? projectId,int? categoryId,string userId, int? priorityId)
         {
-            var tickets = TicketRepository.RunSearch(projectId);
+            var tickets = TicketRepository.RunSearch(projectId, categoryId, userId, priorityId);
 
             return GetExtendedTickes(tickets);
         }

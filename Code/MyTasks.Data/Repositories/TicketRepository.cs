@@ -88,9 +88,13 @@ namespace MyTasks.Data.Repositories
             return summary;
         }
 
-        public List<Ticket> RunSearch(int? projectId)
+        public List<Ticket> RunSearch(int? projectId,int? categoryId,string userId, int? priorityId)
         {
-            return All().Where(t => t.ProjectId == projectId && t.IsLastDetail).ToList();
+            return All().Where(t =>(t.ProjectId == projectId || projectId==0) 
+                                    && (t.CategoryId == categoryId || categoryId ==0) 
+                                    && (t.PriorityId ==  priorityId || priorityId ==0 ) 
+                                    && (t.AssignedTo == userId || string.IsNullOrEmpty(userId)) 
+                                    && t.IsLastDetail).ToList();
         }
 
 

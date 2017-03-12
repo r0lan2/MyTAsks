@@ -642,4 +642,10 @@
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Select all</value>
+  </data>
+  <data name="SearchTickets" xml:space="preserve">
+    <value>Search tickets</value>
+  </data>
 </root>

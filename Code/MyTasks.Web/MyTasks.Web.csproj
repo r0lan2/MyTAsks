@@ -495,7 +495,6 @@
     <Content Include="Views\Search\DisplayGrid.cshtml" />
     <None Include="Views\Ticket\TicketCreate.cshtml" />
     <Content Include="Views\UsersAdmin\SendPasswordConfirmation.cshtml" />
-    <Content Include="Views\Ticket\TicketSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

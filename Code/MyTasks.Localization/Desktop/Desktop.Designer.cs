@@ -29,7 +29,7 @@ namespace MyTasks.Localization.Desktop {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public Desktop() {
+        internal Desktop() {
         }
         
         /// <summary>
@@ -1213,6 +1213,15 @@ namespace MyTasks.Localization.Desktop {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search tickets.
+        /// </summary>
+        public static string SearchTickets {
+            get {
+                return ResourceManager.GetString("SearchTickets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a category.
         /// </summary>
         public static string SelectACategory {
@@ -1236,6 +1245,15 @@ namespace MyTasks.Localization.Desktop {
         public static string SelectALanguage {
             get {
                 return ResourceManager.GetString("SelectALanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        public static string SelectAll {
+            get {
+                return ResourceManager.GetString("SelectAll", resourceCulture);
             }
         }
         

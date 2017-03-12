@@ -1,20 +1,29 @@
-﻿@model List<MyTasks.Domain.DataContracts.TicketListItem>
+﻿@using MyTasks.Localization.Desktop
+@model List<MyTasks.Domain.DataContracts.TicketListItem>
+@using GridMvc.Html
 
-<div class="CSSTableGenerator">
+@{
+    var grid = new WebGrid(Model, canPage: true, rowsPerPage: 20);
+    grid.Pager(WebGridPagerModes.All);
+}
 
-    <table>
-        <tr>
-            <td>ProjectName</td>
-           
-        </tr>
+<div>
+  
+    @Html.Grid(Model).Named("myticketsGrid").Columns(columns =>
+{
+    columns.Add().Encoded(false).Sanitized(false).Titled(Desktop.TicketNumber)
+    .RenderValueAs(o => Html.ActionLink(o.TicketNumber.ToString(), "TicketHistory", "Ticket", new { ticketNumber = o.TicketNumber },null));
+    columns.Add(c => c.Title).Titled(Desktop.Title);
+    columns.Add(c => c.ProjectName).Titled(Desktop.ProjectName);
+    columns.Add(c => c.Category).Titled(Desktop.Category);
+    columns.Add(c => c.Priority).Titled(Desktop.Priority);
+    columns.Add(c => c.AssignedUserName).Titled(Desktop.UserName);
+    columns.Add(c => c.StatusDescription).Titled(Desktop.Status);
+    columns.Add(c => c.AreaName).Titled(Desktop.Area);
 
-        @for (int i = 0; i < Model.Count(); i++)
-        {
-            <tr>
-                <td>
-                    @Model[i].ProjectName
-                </td>
-            </tr>
-        }
-    </table>
+}).WithPaging(10).Sortable(true)
+
 </div>
+
+
+
