@@ -88,6 +88,12 @@ namespace MyTasks.Data.Repositories
             return summary;
         }
 
+        public List<Ticket> RunSearch(int? projectId)
+        {
+            return All().Where(t => t.ProjectId == projectId && t.IsLastDetail).ToList();
+        }
+
+
 
         //TODO:Add resolvedBy and ClosedBy columns to Ticket Table
         public List<UserSummary> GetUserSummary(List<Users> users)

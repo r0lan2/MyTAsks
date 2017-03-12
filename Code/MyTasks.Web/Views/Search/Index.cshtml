@@ -1,0 +1,103 @@
+﻿@using MyTasks.Localization.Desktop
+@model MyTasks.Web.Models.SearchViewModel
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = Desktop.MyTickets;
+}
+
+@*@{
+    var grid = new WebGrid(Model.SearchResult, canPage: true, rowsPerPage: 20);
+    grid.Pager(WebGridPagerModes.All);
+}*@
+@using (Html.BeginForm())
+{
+    <div style="margin-top: 20px" class="well bs-component">
+        <h4>Search Ticket</h4>
+
+        <div id="TicketSearchFilters">
+            <div class="form-horizontal">
+                <fieldset>
+                    <div class="row-fluid">
+                        <div class="form-group">
+                            <label class="control-label col-lg-2" for="ProjectId">@Desktop.Project</label>
+                            <div class="col-lg-2">
+                                @Html.DropDownListFor(m => m.SelectedProjectId, new SelectList(Model.Projects, "ProjectId", "ProjectName"), @Desktop.SelectAProject, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            @*<label class="control-label col-lg-2" for="AreaId">@Desktop.Area</label>
+                                <div class="col-lg-2">
+                                    <select id="areas" name="areas" class="form-control"></select>
+                                </div>
+                                <label class="control-label col-lg-2" for="CategoryId">@Desktop.Category</label>
+                                <div class="col-lg-2">
+                                    @Html.DropDownList("CategoryId", ViewBag.CategoryList as SelectList, @Desktop.SelectACategory, htmlAttributes: new { @class = "form-control" })
+                                </div>*@
+                        </div>
+                        @*<div class="form-group">
+                              <label class="control-label col-lg-2" for="Id">@Desktop.AssignTo</label>
+                              <div class="col-lg-2">
+                                  @Html.DropDownList("UserId", ViewBag.UserList as SelectList, @Desktop.SelectAnUser, htmlAttributes: new { @class = "form-control" })
+                              </div>
+                              <label class="control-label col-lg-2" for="PriorityId">@Desktop.Priority</label>
+                              <div class="col-lg-2">
+                                  @Html.DropDownList("PriorityId", ViewBag.PriorityList as SelectList, @Desktop.SelectAPriority, htmlAttributes: new { @class = "form-control" })
+                              </div>
+                            </div>*@
+                        <div class="form-group">
+                            <div class="col-lg-10 pull-right">
+                                <div class="row-fluid">
+                                    <button class="btn btn-primary" id="btnSubmit" type="submit">
+                                        @Desktop.Search
+                                    </button>
+                                    &nbsp;&nbsp;<span style="vertical-align: bottom">  @Desktop.Or </span>&nbsp;&nbsp;
+                                    @Html.ActionLink(Desktop.Cancel, "Index", "Ticket", null, new { @style = "vertical-align: bottom;" })
+                                </div>
+                            </div>
+                        </div>
+                        @*@Html.HiddenFor(model => model.AreaId)*@
+                    </div>
+                </fieldset>
+
+            </div>
+        </div>
+
+        @*<div id="ticketSearchResult">
+                    @Html.Grid(Model).Named("myticketsGrid").Columns(columns =>
+                {
+                    columns.Add().Encoded(false).Sanitized(false).Titled(Desktop.TicketNumber)
+                    .RenderValueAs(o => Html.ActionLink(o.TicketNumber.ToString(), "TicketHistory", new { ticketNumber = o.TicketNumber }));
+                    columns.Add(c => c.Title).Titled(Desktop.Title);
+                    columns.Add(c => c.ProjectName).Titled(Desktop.ProjectName).Filterable(true).SetFilterWidgetType("CustomProjectFilterWidget");
+                    columns.Add(c => c.Category).Titled(Desktop.Category).Filterable(true).SetFilterWidgetType("CustomCategoryFilterWidget");
+                    columns.Add(c => c.Priority).Titled(Desktop.Priority).Filterable(true).SetFilterWidgetType("CustomPriorityFilterWidget");
+                    columns.Add(c => c.StatusDescription).Titled(Desktop.Status).Filterable(true).SetFilterWidgetType("CustomStatusFilterWidget");
+                    columns.Add(c => c.AreaName).Titled(Desktop.Area).Filterable(true);
+
+                }).WithPaging(10).Sortable(true)
+            </div>*@
+        @*<script>
+
+                $(function () {
+                    pageGrids.myticketsGrid.addFilterWidget(new StatusListFilterWidget());
+                    pageGrids.myticketsGrid.addFilterWidget(new PriorityListFilterWidget());
+                    pageGrids.myticketsGrid.addFilterWidget(new CategoryListFilterWidget());
+                    pageGrids.myticketsGrid.addFilterWidget(new ProjectListFilterWidget());
+
+                });
+            </script>*@
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    @if (Model.SearchResult != null)
+                    {
+                        @Html.Partial("Displaygrid", Model.SearchResult);
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+
+
+
+
