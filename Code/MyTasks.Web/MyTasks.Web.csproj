@@ -371,6 +371,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\LocalDeploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\adminTemplate\jquery-ui-1.10.4.min.js" />
     <Content Include="Scripts\adminTemplate\jquery.nicescroll.js" />
@@ -493,7 +494,7 @@
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Search\DisplayGrid.cshtml" />
-    <None Include="Views\Ticket\TicketCreate.cshtml" />
+    <Content Include="Views\Ticket\TicketCreate.cshtml" />
     <Content Include="Views\UsersAdmin\SendPasswordConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
