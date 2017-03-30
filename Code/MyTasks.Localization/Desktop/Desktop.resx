@@ -648,4 +648,10 @@
   <data name="SearchTickets" xml:space="preserve">
     <value>Search tickets</value>
   </data>
+  <data name="Tickets" xml:space="preserve">
+    <value>Tickets</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
 </root>

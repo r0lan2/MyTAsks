@@ -180,8 +180,7 @@ namespace MyTasks.Data.UnitOfWorks
             return GetExtendedTickes(tickets);
         }
 
-
-
+        
         public List<TicketListItem> GetExtendedTickes(List<Ticket> tickets)
         {
 
@@ -248,7 +247,20 @@ namespace MyTasks.Data.UnitOfWorks
             return TicketRepository.GetUserSummary(users);
         }
 
-
+        public DashBoardDTO GetDashBoardSummary()
+        {
+            var numberOfUsers = UserRepository.All().Count();
+            var numberOfTickets = TicketRepository.GetTicketCount();
+            var numberOfProjects = ProjectRepository.All().Count();
+            var numberOfCustomers = CustomerRepository.All().Count();
+            return new DashBoardDTO()
+            {
+                TotalCustomers = numberOfCustomers,
+                TotalProjects = numberOfProjects,
+                TotalTickets = numberOfTickets,
+                TotalUsers = numberOfUsers
+            };
+        }
 
 
         public List<Project> GetProjects()

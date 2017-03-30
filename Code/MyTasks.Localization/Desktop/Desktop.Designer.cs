@@ -1438,6 +1438,15 @@ namespace MyTasks.Localization.Desktop {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tickets.
+        /// </summary>
+        public static string Tickets {
+            get {
+                return ResourceManager.GetString("Tickets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TicketType.
         /// </summary>
         public static string TicketType {
@@ -1605,6 +1614,15 @@ namespace MyTasks.Localization.Desktop {
         public static string UserNameIsRequired {
             get {
                 return ResourceManager.GetString("UserNameIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users.
+        /// </summary>
+        public static string Users {
+            get {
+                return ResourceManager.GetString("Users", resourceCulture);
             }
         }
         

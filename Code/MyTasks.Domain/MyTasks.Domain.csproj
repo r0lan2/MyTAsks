@@ -96,6 +96,7 @@
     <Compile Include="Base\State.cs" />
     <Compile Include="DataContracts\AreaDTO.cs" />
     <Compile Include="DataContracts\DailyJobData.cs" />
+    <Compile Include="DataContracts\DashBoardDTO.cs" />
     <Compile Include="DataContracts\LocalizedDisplayNameAttribute.cs" />
     <Compile Include="DataContracts\ProjectSummary.cs" />
     <Compile Include="DataContracts\TicketData.cs" />

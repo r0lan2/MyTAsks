@@ -23,8 +23,7 @@ namespace MyTasks.Web.Controllers.Api
             var result= unitOfWork.TicketSearch(term);
             return result;
         }
-
-
+        
         [System.Web.Http.Route("api/TicketApi/GetProjectsSummary")]
         [System.Web.Http.HttpGet]
         public IEnumerable<ProjectSummary> GetProjectsSummary()
@@ -41,7 +40,6 @@ namespace MyTasks.Web.Controllers.Api
             return usersSummary;
         }
         
-
         public IEnumerable<AreaDTO> GetAreas(int projectId)
         {
             var areas = unitOfWork.GetAreasByProject(projectId);
@@ -81,6 +79,15 @@ namespace MyTasks.Web.Controllers.Api
             var projectList = unitOfWork.ProjectRepository.All().Select(s => s.ProjectName).ToList();
             return projectList;
         }
+
+        [System.Web.Http.Route("api/TicketApi/GetDashBoardSummary")]
+        [System.Web.Http.HttpGet]
+        public DashBoardDTO GetDashBoardSummary()
+        {
+            return unitOfWork.GetDashBoardSummary();
+        }
+
+
 
 
 

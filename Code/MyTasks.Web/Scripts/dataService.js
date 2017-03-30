@@ -50,6 +50,11 @@
         });
     };
 
+    getDashBoardSummary= function(callback) {
+        $.getJSON(window.applicationBaseUrl + 'api/TicketApi/GetDashBoardSummary', function (data) {
+            callback(data);
+        });
+    }
 
     return {
         getProjectsSummary: getProjectsSummary,
@@ -59,7 +64,8 @@
         getPriorityList: getPriorityList,
         getCategoryList: getCategoryList,
         getProjects: getProjects,
-        searchTicket: searchTicket
+        searchTicket: searchTicket,
+        getDashBoardSummary: getDashBoardSummary
     };
 
 }();

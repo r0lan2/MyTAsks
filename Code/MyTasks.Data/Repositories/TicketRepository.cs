@@ -97,7 +97,10 @@ namespace MyTasks.Data.Repositories
                                     && t.IsLastDetail).ToList();
         }
 
-
+        public int GetTicketCount()
+        {
+            return All().Count(t => t.IsLastDetail);
+        }
 
         //TODO:Add resolvedBy and ClosedBy columns to Ticket Table
         public List<UserSummary> GetUserSummary(List<Users> users)
