@@ -82,15 +82,25 @@ namespace MyTasks.Web.Controllers.Api
 
         [System.Web.Http.Route("api/TicketApi/GetDashBoardSummary")]
         [System.Web.Http.HttpGet]
-        public DashBoardDTO GetDashBoardSummary()
+        public DashBoardSummaryDTO GetDashBoardSummary()
         {
             return unitOfWork.GetDashBoardSummary();
         }
 
+        [System.Web.Http.Route("api/TicketApi/GetDashBoardOpenTicketByPriority")]
+        [System.Web.Http.HttpGet]
+        public List<DashBoardOpenByPriority> GetDashBoardOpenTicketByPriority()
+        {
+            return unitOfWork.GetDashBoardOpenTicketByPriority();
+        }
 
-
-
-
+        [System.Web.Http.Route("api/TicketApi/GetDashBoardStatusSummary")]
+        [System.Web.Http.HttpGet]
+        public List<DashBoardStatusSummary> GetDashBoardStatusSummary()
+        {
+            return unitOfWork.GetDashBoardStatusSummary();
+        }
+        
 
     }
 }

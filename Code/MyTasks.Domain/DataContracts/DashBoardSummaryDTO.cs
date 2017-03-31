@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyTasks.Domain.DataContracts
 {
-    public class DashBoardDTO
+    public class DashBoardSummaryDTO
     {
         public int TotalUsers { get; set; }
         public int TotalProjects { get; set; }

@@ -56,16 +56,30 @@
         });
     }
 
+    getDashBoardOpenTicketByPriority = function (callback) {
+        $.getJSON(window.applicationBaseUrl + 'api/TicketApi/GetDashBoardOpenTicketByPriority', function (data) {
+            callback(data);
+        });
+    }
+
+    getDashBoardStatusSummary = function (callback) {
+        $.getJSON(window.applicationBaseUrl + 'api/TicketApi/GetDashBoardStatusSummary', function (data) {
+            callback(data);
+        });
+    }
+
     return {
         getProjectsSummary: getProjectsSummary,
-        getUsersSummary:getUsersSummary,
+        getUsersSummary: getUsersSummary,
         getAreasByProject: getAreasByProject,
         getStatusList: getStatusList,
         getPriorityList: getPriorityList,
         getCategoryList: getCategoryList,
         getProjects: getProjects,
         searchTicket: searchTicket,
-        getDashBoardSummary: getDashBoardSummary
+        getDashBoardSummary: getDashBoardSummary,
+        getDashBoardOpenTicketByPriority: getDashBoardOpenTicketByPriority,
+        getDashBoardStatusSummary:getDashBoardStatusSummary
     };
 
 }();

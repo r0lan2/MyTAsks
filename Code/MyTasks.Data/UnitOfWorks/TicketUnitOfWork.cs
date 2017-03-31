@@ -247,13 +247,13 @@ namespace MyTasks.Data.UnitOfWorks
             return TicketRepository.GetUserSummary(users);
         }
 
-        public DashBoardDTO GetDashBoardSummary()
+        public DashBoardSummaryDTO GetDashBoardSummary()
         {
             var numberOfUsers = UserRepository.All().Count();
-            var numberOfTickets = TicketRepository.GetTicketCount();
+            var numberOfTickets = TicketRepository.GetTickets().Count();
             var numberOfProjects = ProjectRepository.All().Count();
             var numberOfCustomers = CustomerRepository.All().Count();
-            return new DashBoardDTO()
+            return new DashBoardSummaryDTO()
             {
                 TotalCustomers = numberOfCustomers,
                 TotalProjects = numberOfProjects,
@@ -262,6 +262,47 @@ namespace MyTasks.Data.UnitOfWorks
             };
         }
 
+        public List<DashBoardOpenByPriority>  GetDashBoardOpenTicketByPriority()
+        {
+            var list = new List<DashBoardOpenByPriority>();
+            var priorities = PriorityRepository.All();
+            var tickets = TicketRepository.GetTickets();
+            var totalTicketCount= tickets.Count();
+            foreach (var priority in priorities)
+            {
+                var numberOfTickets = tickets.Count(t => t.PriorityId == priority.PriorityId);
+                var item = new DashBoardOpenByPriority()
+                {
+                    Priority = priority.Name,
+                    NumberOfTickets = numberOfTickets,
+                    Percentage = totalTicketCount > 0 ? (numberOfTickets * 100 / totalTicketCount)   : 0
+
+                };
+                list.Add(item);
+            }
+            return list;
+        }
+
+        public List<DashBoardStatusSummary> GetDashBoardStatusSummary()
+        {
+            var list = new List<DashBoardStatusSummary>();
+            var statusList = StatusRepository.All();
+            var tickets = TicketRepository.GetTickets();
+            var totalTicketCount = tickets.Count();
+            foreach (var status in statusList)
+            {
+                var numberOfTickets = tickets.Count(t => t.TicketStatusId == status.TicketStatusId);
+                var item = new DashBoardStatusSummary()
+                {
+                    Status = status.Name,
+                    NumberOfTickets = numberOfTickets,
+                    Percentage = totalTicketCount > 0 ? (numberOfTickets * 100 / totalTicketCount)  : 0
+                };
+                list.Add(item);
+            }
+            return list;
+        }
+        
 
         public List<Project> GetProjects()
         {
