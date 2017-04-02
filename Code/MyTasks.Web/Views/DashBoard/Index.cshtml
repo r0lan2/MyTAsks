@@ -8,7 +8,7 @@
         <section > @*class="panel"*@
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+                    <h3 class="page-header"><i class="fa fa-laptop"></i> @Desktop.DashBoard</h3>
                 </div>
             </div>
             <div class="row">
@@ -52,7 +52,9 @@
                             <!-- Projects -->
                             <div class="col-lg-6">
                                 <section class="panel">
-                                    <header class="panel-heading"></header>
+                                    <header class="panel-heading-dashboard-panel">
+                                        @Desktop.SummaryByProject
+                                    </header>
                                     <div class="panel-body text-center">
                                         <div id="chartProjectContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                                     </div>
@@ -61,7 +63,7 @@
                             <!-- Users -->
                             <div class="col-lg-6">
                                 <section class="panel">
-                                    <header class="panel-heading"></header>
+                                    <header class="panel-heading-dashboard-panel">@Desktop.SummaryByUser</header>
                                     <div class="panel-body text-center">
                                         <div id="chartUserContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                                     </div>
@@ -71,23 +73,18 @@
                     </div>
                 </div>
             </div>
-            
             <div class="row">
                 <div class="col-lg-6">
                     <section class="panel">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-lg-8 task-progress pull-left">
-                                    <h1>To Do Everyday</h1>
-                                </div>
-                            </div>
-                        </div>
+                        <header class="panel-heading-dashboard-panel">
+                            @Desktop.OpenTicketByPriority
+                        </header>
                         <table id="openByPriorityTable" class="table table-hover personal-task">
                             <thead>
                                 <tr>
-                                    <td>PRIORITY</td>
-                                    <td>TICKETS</td>
-                                    <td>PERCENTAGE</td>
+                                    <td>@Desktop.Priority</td>
+                                    <td>@Desktop.Tickets</td>
+                                    <td>@Desktop.Percentage</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -97,19 +94,15 @@
                 </div>
                 <div class="col-lg-6">
                     <section class="panel">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-lg-8 task-progress pull-left">
-                                    <h1>To Do Everyday</h1>
-                                </div>
-                            </div>
-                        </div>
+                        <header class="panel-heading-dashboard-panel">
+                            @Desktop.StatusSummary
+                        </header>
                         <table id="statusSummaryTable" class="table table-hover personal-task">
                             <thead>
                                 <tr>
-                                    <td>STATUS</td>
-                                    <td>TICKETS</td>
-                                    <td>PERCENTAGE</td>
+                                    <td>@Desktop.Status</td>
+                                    <td>@Desktop.Tickets</td>
+                                    <td>@Desktop.Percentage</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -120,7 +113,6 @@
                     </section>
                 </div>
             </div>
-
         </section>
     </div>
 </div>
@@ -190,7 +182,7 @@
             Highcharts.chart('chartProjectContainer',
             {
                 title: {
-                    text: Resources.SummaryByProject
+                    text:''
                 },
                 xAxis: {
                     categories: projectNames
@@ -234,7 +226,7 @@
             Highcharts.chart('chartUserContainer',
             {
                 title: {
-                    text: Resources.SummaryByUser
+                    text: ''
                 },
                 xAxis: {
                     categories: userNames

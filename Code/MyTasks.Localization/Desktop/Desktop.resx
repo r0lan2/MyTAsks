@@ -654,4 +654,13 @@
   <data name="Users" xml:space="preserve">
     <value>Users</value>
   </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>Percentage</value>
+  </data>
+  <data name="OpenTicketByPriority" xml:space="preserve">
+    <value>Open ticket by priority</value>
+  </data>
+  <data name="StatusSummary" xml:space="preserve">
+    <value>Status summary</value>
+  </data>
 </root>

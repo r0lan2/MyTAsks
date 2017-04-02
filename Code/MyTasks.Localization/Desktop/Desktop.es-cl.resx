@@ -654,4 +654,10 @@
   <data name="Users" xml:space="preserve">
     <value>Users</value>
   </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>Porcentaje</value>
+  </data>
+  <data name="StatusSummary" xml:space="preserve">
+    <value>Resumen por estado</value>
+  </data>
 </root>

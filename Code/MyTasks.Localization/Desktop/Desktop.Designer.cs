@@ -943,6 +943,15 @@ namespace MyTasks.Localization.Desktop {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open ticket by priority.
+        /// </summary>
+        public static string OpenTicketByPriority {
+            get {
+                return ResourceManager.GetString("OpenTicketByPriority", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Or.
         /// </summary>
         public static string Or {
@@ -966,6 +975,15 @@ namespace MyTasks.Localization.Desktop {
         public static string PasswordSuccessfullySent {
             get {
                 return ResourceManager.GetString("PasswordSuccessfullySent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Percentage.
+        /// </summary>
+        public static string Percentage {
+            get {
+                return ResourceManager.GetString("Percentage", resourceCulture);
             }
         }
         
@@ -1362,6 +1380,15 @@ namespace MyTasks.Localization.Desktop {
         public static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status summary.
+        /// </summary>
+        public static string StatusSummary {
+            get {
+                return ResourceManager.GetString("StatusSummary", resourceCulture);
             }
         }
         
