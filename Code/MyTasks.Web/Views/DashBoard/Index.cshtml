@@ -82,7 +82,7 @@
                         <div class="panel-body">
                             <div class="row projectListFilterRow">
                                 <span>Filter by project: </span>
-                                <select id="projectList" class="form-control" placeholder="Entity Status"
+                                <select id=projectFilterforOpenTicketByPriority class="form-control" placeholder="Entity Status"
                                         multiple="multiple"></select>
                             </div>
                             <div class="row">
@@ -105,19 +105,27 @@
                         <header class="panel-heading-dashboard-panel">
                             @Desktop.StatusSummary
                         </header>
-                        <table id="statusSummaryTable" class="table table-hover personal-task">
-                            <thead>
-                                <tr>
-                                    <td>@Desktop.Status</td>
-                                    <td>@Desktop.Tickets</td>
-                                    <td>@Desktop.Percentage</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="panel-body">
+                            <div class="row projectListFilterRow">
+                                <span>Filter by project: </span>
+                                <select id=projectFilterforStatusSummary class="form-control" placeholder="Entity Status"
+                                        multiple="multiple"></select>
+                            </div>
+                            <div class="row">
+                                <table id="statusSummaryTable" class="table table-hover personal-task">
+                                    <thead>
+                                        <tr>
+                                            <td>@Desktop.Status</td>
+                                            <td>@Desktop.Tickets</td>
+                                            <td>@Desktop.Percentage</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </section>
                 </div>
             </div>
@@ -137,40 +145,45 @@
                 dataService.getUsersSummary(drawUserChart);
                 dataService.getDashBoardSummary(drawDashBoard);
                 dataService.getDashBoardOpenTicketByPriority("",setTableOpenByPriority);
-                dataService.getDashBoardStatusSummary(setTableStatusSummary);
+                dataService.getDashBoardStatusSummary("",setTableStatusSummary);
                 dataService.getProjectList(setProjectDropdowns);
 
 
-                $('#projectList').multiselect({
+                $('#projectFilterforOpenTicketByPriority').multiselect({
                     onChange: function (element, checked) {
                         $("#openByPriorityTable tbody").empty();
-                        dataService.getDashBoardOpenTicketByPriority($('#projectList').val(), setTableOpenByPriority);
+                        dataService.getDashBoardOpenTicketByPriority($('#projectFilterforOpenTicketByPriority').val(), setTableOpenByPriority);
                    }
                 });
+
+                $('#projectFilterforStatusSummary').multiselect({
+                    onChange: function (element, checked) {
+                        $("#statusSummaryTable tbody").empty();
+                        dataService.getDashBoardStatusSummary($('#projectFilterforStatusSummary').val(), setTableStatusSummary);
+                    }
+                });
+
+
 
             });
 
         function setProjectDropdowns(data) {
-            debugger;
             _.forEach(data,
                 (item) => {
-                    $('#projectList')
-                        .append('<option value="' +
-                            item.ProjectId +
-                            '">' +
-                            item
-                            .ProjectName +
-                            '</option>');
+                    $('#projectFilterforOpenTicketByPriority')
+                        .append('<option value="' + item.ProjectId + '">' + item.ProjectName + '</option>');
+
+                    $('#projectFilterforStatusSummary')
+                        .append('<option value="' + item.ProjectId + '">' + item.ProjectName + '</option>');
+
                 });
 
-            $('#projectList').multiselect('rebuild');
+            $('#projectFilterforOpenTicketByPriority').multiselect('rebuild');
+            $('#projectFilterforStatusSummary').multiselect('rebuild');
 
         }
 
         function setTableOpenByPriority(data) {
-
-            
-
             _.forEach(data,
                 (item) => {
 

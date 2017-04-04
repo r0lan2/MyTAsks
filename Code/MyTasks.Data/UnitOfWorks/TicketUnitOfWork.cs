@@ -286,15 +286,18 @@ namespace MyTasks.Data.UnitOfWorks
             return list;
         }
 
-        public List<DashBoardStatusSummary> GetDashBoardStatusSummary()
+        public List<DashBoardStatusSummary> GetDashBoardStatusSummary(string projects)
         {
+            var allProjects = ProjectRepository.All();
+            string[] selectedProjects = !string.IsNullOrEmpty(projects) ? projects.Split(',') : allProjects.Select(p => p.ProjectId.ToString()).ToArray();
+
             var list = new List<DashBoardStatusSummary>();
             var statusList = StatusRepository.All();
             var tickets = TicketRepository.GetTickets();
-            var totalTicketCount = tickets.Count();
+            var totalTicketCount = tickets.Count(t => selectedProjects.Contains(t.ProjectId.ToString()));
             foreach (var status in statusList)
             {
-                var numberOfTickets = tickets.Count(t => t.TicketStatusId == status.TicketStatusId);
+                var numberOfTickets = tickets.Count(t => t.TicketStatusId == status.TicketStatusId && selectedProjects.Contains(t.ProjectId.ToString()));
                 var item = new DashBoardStatusSummary()
                 {
                     Status = status.Name,

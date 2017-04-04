@@ -62,8 +62,8 @@
         });
     }
 
-    getDashBoardStatusSummary = function (callback) {
-        $.getJSON(window.applicationBaseUrl + 'api/TicketApi/GetDashBoardStatusSummary', function (data) {
+    getDashBoardStatusSummary = function (projects,callback) {
+        $.getJSON(window.applicationBaseUrl + 'api/TicketApi/GetDashBoardStatusSummary?projects=' + projects, function (data) {
             callback(data);
         });
     }

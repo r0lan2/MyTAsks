@@ -109,9 +109,9 @@ namespace MyTasks.Web.Controllers.Api
 
         [System.Web.Http.Route("api/TicketApi/GetDashBoardStatusSummary")]
         [System.Web.Http.HttpGet]
-        public List<DashBoardStatusSummary> GetDashBoardStatusSummary()
+        public List<DashBoardStatusSummary> GetDashBoardStatusSummary(string projects)
         {
-            return unitOfWork.GetDashBoardStatusSummary();
+            return unitOfWork.GetDashBoardStatusSummary(projects);
         }
         
 
