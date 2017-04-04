@@ -262,15 +262,18 @@ namespace MyTasks.Data.UnitOfWorks
             };
         }
 
-        public List<DashBoardOpenByPriority>  GetDashBoardOpenTicketByPriority()
+        public List<DashBoardOpenByPriority>  GetDashBoardOpenTicketByPriority(string projects)
         {
+            var allProjects = ProjectRepository.All();
+            string[] selectedProjects = !string.IsNullOrEmpty(projects) ? projects.Split(',') : allProjects.Select(p => p.ProjectId.ToString()).ToArray();
+
             var list = new List<DashBoardOpenByPriority>();
             var priorities = PriorityRepository.All();
             var tickets = TicketRepository.GetTickets();
-            var totalTicketCount= tickets.Count();
+            var totalTicketCount= tickets.Count(t=> selectedProjects.Contains(t.ProjectId.ToString()));
             foreach (var priority in priorities)
             {
-                var numberOfTickets = tickets.Count(t => t.PriorityId == priority.PriorityId);
+                var numberOfTickets = tickets.Count(t => t.PriorityId == priority.PriorityId && selectedProjects.Contains(t.ProjectId.ToString()));
                 var item = new DashBoardOpenByPriority()
                 {
                     Priority = priority.Name,

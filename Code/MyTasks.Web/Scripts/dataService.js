@@ -56,14 +56,20 @@
         });
     }
 
-    getDashBoardOpenTicketByPriority = function (callback) {
-        $.getJSON(window.applicationBaseUrl + 'api/TicketApi/GetDashBoardOpenTicketByPriority', function (data) {
+    getDashBoardOpenTicketByPriority = function (projects,callback) {
+        $.getJSON(window.applicationBaseUrl + 'api/TicketApi/GetDashBoardOpenTicketByPriority?projects=' + projects, function (data) {
             callback(data);
         });
     }
 
     getDashBoardStatusSummary = function (callback) {
         $.getJSON(window.applicationBaseUrl + 'api/TicketApi/GetDashBoardStatusSummary', function (data) {
+            callback(data);
+        });
+    }
+
+    getProjectList = function(callback) {
+        $.getJSON(window.applicationBaseUrl + 'api/TicketApi/GetProjectList', function (data) {
             callback(data);
         });
     }
@@ -79,7 +85,8 @@
         searchTicket: searchTicket,
         getDashBoardSummary: getDashBoardSummary,
         getDashBoardOpenTicketByPriority: getDashBoardOpenTicketByPriority,
-        getDashBoardStatusSummary:getDashBoardStatusSummary
+        getDashBoardStatusSummary:getDashBoardStatusSummary,
+        getProjectList: getProjectList
     };
 
 }();

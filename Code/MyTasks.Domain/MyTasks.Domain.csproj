@@ -100,6 +100,7 @@
     <Compile Include="DataContracts\DashBoardStatusSummary.cs" />
     <Compile Include="DataContracts\DashBoardSummaryDTO.cs" />
     <Compile Include="DataContracts\LocalizedDisplayNameAttribute.cs" />
+    <Compile Include="DataContracts\ProjectDTO.cs" />
     <Compile Include="DataContracts\ProjectSummary.cs" />
     <Compile Include="DataContracts\TicketData.cs" />
     <Compile Include="DataContracts\TicketHistoryData.cs" />

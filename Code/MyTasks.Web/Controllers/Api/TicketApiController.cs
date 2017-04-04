@@ -80,6 +80,19 @@ namespace MyTasks.Web.Controllers.Api
             return projectList;
         }
 
+        [System.Web.Http.Route("api/TicketApi/GetProjectList")]
+        [System.Web.Http.HttpGet]
+        public IEnumerable<ProjectDTO> GetProjectList()
+        {
+            var allProjects = unitOfWork.ProjectRepository.All();
+            return allProjects.Select(project => new ProjectDTO()
+            {
+                ProjectId = project.ProjectId, ProjectName = project.ProjectName
+            }).ToList();
+
+        }
+
+
         [System.Web.Http.Route("api/TicketApi/GetDashBoardSummary")]
         [System.Web.Http.HttpGet]
         public DashBoardSummaryDTO GetDashBoardSummary()
@@ -89,9 +102,9 @@ namespace MyTasks.Web.Controllers.Api
 
         [System.Web.Http.Route("api/TicketApi/GetDashBoardOpenTicketByPriority")]
         [System.Web.Http.HttpGet]
-        public List<DashBoardOpenByPriority> GetDashBoardOpenTicketByPriority()
+        public List<DashBoardOpenByPriority> GetDashBoardOpenTicketByPriority(string projects)
         {
-            return unitOfWork.GetDashBoardOpenTicketByPriority();
+            return unitOfWork.GetDashBoardOpenTicketByPriority(projects);
         }
 
         [System.Web.Http.Route("api/TicketApi/GetDashBoardStatusSummary")]

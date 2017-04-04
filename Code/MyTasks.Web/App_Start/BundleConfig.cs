@@ -26,7 +26,8 @@ namespace MyTasks.Web
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/bootstrap-multiselect.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/lodash").Include(
                       "~/Scripts/lodash.core.min.js",
@@ -48,7 +49,8 @@ namespace MyTasks.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-theme.css",
-                      "~/Content/font-awesome.css"));
+                      "~/Content/font-awesome.css",
+                      "~/Content/bootstrap-multiselect.css"));
 
 
             bundles.Add(new StyleBundle("~/Content/niceadmin").Include(

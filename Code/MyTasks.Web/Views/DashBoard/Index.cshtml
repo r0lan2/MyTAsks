@@ -23,7 +23,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="info-box brown-bg">
                         <i class="fa fa-users"></i>
-                        <div id="userCount"  class="count">7.538</div>
+                        <div id="userCount"  class="count">0</div>
                         <div class="title">@Desktop.Users</div>
                     </div><!--/.info-box-->
                 </div><!--/.col-->
@@ -31,7 +31,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="info-box dark-bg">
                         <i class="fa fa-desktop"></i>
-                        <div id="projectCount"  class="count">4.362</div>
+                        <div id="projectCount"  class="count">0</div>
                         <div class="title">@Desktop.Projects</div>
                     </div><!--/.info-box-->
                 </div><!--/.col-->
@@ -39,7 +39,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="info-box green-bg">
                         <i class="fa fa-building"></i>
-                        <div id="customerCount" class="count">1.426</div>
+                        <div id="customerCount" class="count">0</div>
                         <div class="title">@Desktop.Customers</div>
                     </div><!--/.info-box-->
                 </div><!--/.col-->
@@ -79,17 +79,25 @@
                         <header class="panel-heading-dashboard-panel">
                             @Desktop.OpenTicketByPriority
                         </header>
-                        <table id="openByPriorityTable" class="table table-hover personal-task">
-                            <thead>
-                                <tr>
-                                    <td>@Desktop.Priority</td>
-                                    <td>@Desktop.Tickets</td>
-                                    <td>@Desktop.Percentage</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+                        <div class="panel-body">
+                            <div class="row projectListFilterRow">
+                                <span>Filter by project: </span>
+                                <select id="projectList" class="form-control" placeholder="Entity Status"
+                                        multiple="multiple"></select>
+                            </div>
+                            <div class="row">
+                                <table id="openByPriorityTable" class="table table-hover personal-task">
+                                    <thead>
+                                        <tr>
+                                            <td>@Desktop.Priority</td>
+                                            <td>@Desktop.Tickets</td>
+                                            <td>@Desktop.Percentage</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
                     </section>
                 </div>
                 <div class="col-lg-6">
@@ -128,19 +136,55 @@
                 dataService.getProjectsSummary(drawProjectChart);
                 dataService.getUsersSummary(drawUserChart);
                 dataService.getDashBoardSummary(drawDashBoard);
-                dataService.getDashBoardOpenTicketByPriority(setTableOpenByPriority);
+                dataService.getDashBoardOpenTicketByPriority("",setTableOpenByPriority);
                 dataService.getDashBoardStatusSummary(setTableStatusSummary);
+                dataService.getProjectList(setProjectDropdowns);
+
+
+                $('#projectList').multiselect({
+                    onChange: function (element, checked) {
+                        $("#openByPriorityTable tbody").empty();
+                        dataService.getDashBoardOpenTicketByPriority($('#projectList').val(), setTableOpenByPriority);
+                   }
+                });
+
             });
 
-        function setTableOpenByPriority(data) {
-         
+        function setProjectDropdowns(data) {
+            debugger;
             _.forEach(data,
                 (item) => {
-                  
-                    var newTr = "<tr>" + "<td>" + item.Priority + "</td>"
-                                       + "<td>" + item.NumberOfTickets  + "</td>"
-                                       + "<td>" + item.Percentage + "</td>"
-                                       + "</tr>";
+                    $('#projectList')
+                        .append('<option value="' +
+                            item.ProjectId +
+                            '">' +
+                            item
+                            .ProjectName +
+                            '</option>');
+                });
+
+            $('#projectList').multiselect('rebuild');
+
+        }
+
+        function setTableOpenByPriority(data) {
+
+            
+
+            _.forEach(data,
+                (item) => {
+
+                    var newTr = "<tr>" +
+                        "<td>" +
+                        item.Priority +
+                        "</td>" +
+                        "<td>" +
+                        item.NumberOfTickets +
+                        "</td>" +
+                        "<td>" +
+                        item.Percentage +
+                        "</td>" +
+                        "</tr>";
                     appendRowToTable("#openByPriorityTable", newTr);
                 });
         }
@@ -148,15 +192,21 @@
         function setTableStatusSummary(data) {
             _.forEach(data,
                 (item) => {
-                    var newTr = "<tr>" + "<td>" + item.Status + "</td>"
-                                     + "<td>"   + item.NumberOfTickets + "</td>"
-                                     + "<td>"   + item.Percentage + "</td>"
-                                     + "</tr>";
+                    var newTr = "<tr>" +
+                        "<td>" +
+                        item.Status +
+                        "</td>" +
+                        "<td>" +
+                        item.NumberOfTickets +
+                        "</td>" +
+                        "<td>" +
+                        item.Percentage +
+                        "</td>" +
+                        "</tr>";
                     appendRowToTable("#statusSummaryTable", newTr);
                 });
         }
 
-       
 
         function appendRowToTable(tableId, trRow) {
             $(tableId).find("tbody").append(trRow);
@@ -182,7 +232,7 @@
             Highcharts.chart('chartProjectContainer',
             {
                 title: {
-                    text:''
+                    text: ''
                 },
                 xAxis: {
                     categories: projectNames

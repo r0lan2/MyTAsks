@@ -1955,6 +1955,10 @@ div[data-role="editor-toolbar"] {
     top: 6px;
 }
 
+.projectListFilterRow {
+     margin-left: 0px;
+}
+
 .personal-task.table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
     background-color: #f7f8fc;

@@ -284,6 +284,7 @@
     <Content Include="Content\adminTemplate\style-responsive.css" />
     <Content Include="Content\adminTemplate\style.css" />
     <Content Include="Content\adminTemplate\validations.css" />
+    <Content Include="Content\bootstrap-multiselect.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -378,6 +379,8 @@
     <Content Include="Scripts\adminTemplate\jquery.scrollTo.min.js" />
     <Content Include="Scripts\adminTemplate\scripts.js" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
+    <Content Include="Scripts\bootstrap-multiselect-collapsible-groups.js" />
+    <Content Include="Scripts\bootstrap-multiselect.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\dataService.js" />
