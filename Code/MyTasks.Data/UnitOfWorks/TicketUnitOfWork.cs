@@ -209,6 +209,7 @@ namespace MyTasks.Data.UnitOfWorks
                                     AssignedUserName = uu.UserName,
                                     OwnerUserId = t.OwnerUserId,
                                     OwnerUserName = u.UserName,
+                                    
                                     LastUpdateDate = t.LastUpdateDate.Value,
                                     Content = t.Details,
                                     IsLastDetail=t.IsLastDetail,

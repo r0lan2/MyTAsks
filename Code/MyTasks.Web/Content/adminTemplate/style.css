@@ -1073,7 +1073,7 @@ div[data-role="editor-toolbar"] {
 }
 .panel .panel-heading {
   line-height: 34px;
-  padding: 0 15px;
+  /*padding: 0 15px;*/
   min-height: 34px;
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
@@ -4979,3 +4979,21 @@ span.customSelect.changed {
 .spacer-xs { margin:0; padding:0; height:5px; }
 .spacer-s { margin:0; padding:0; height:10px; }
 .ui-autocomplete { position: absolute; cursor: default;z-index:30 !important;}  
+
+.subtitle {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #333;
+    font-family: 'LatoBold';
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+.subtitle-lined {
+    border-bottom: 1px dotted #ddd;
+    padding-bottom: 5px;
+}
+
+p {
+    margin-bottom: 10px;
+}

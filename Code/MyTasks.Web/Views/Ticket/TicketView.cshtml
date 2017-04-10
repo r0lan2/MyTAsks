@@ -1,0 +1,172 @@
+﻿@using MyTasks.Localization.Desktop
+@model MyTasks.Domain.DataContracts.TicketHistoryData
+
+@{
+    ViewBag.Title = "View Ticket details";
+}
+
+
+
+<div class="mainpanel">
+    <div class="contentpanel">
+
+        @*<div id="editTicket" class="panel" style="display: none">
+            @Html.Partial("TicketUpdate", @Model.LastEditedTicket)
+        </div>*@
+        <div class="panel">
+            @Html.Partial("TicketUpdate", @Model.LastEditedTicket)
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <h5 class="bug-key-title">@Model.LastEditedTicket.TicketNumber</h5>
+                <div class="panel-title">@Model.LastEditedTicket.Title</div>
+            </div><!-- panel-heading-->
+            <div class="panel-body">
+                <div class="btn-group mr10">
+                    <button id="EditTicketBtn" class="btn btn-primary" type="button"><i class="fa fa-pencil mr5"></i> Edit</button>
+                </div>
+                <br /><br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h5 class="subtitle subtitle-lined">Details</h5>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-xs-6">Project</div>
+                                    <div class="col-xs-6">@Model.LastEditedTicket.ProjectName</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">Area</div>
+                                    <div class="col-xs-6">@Model.LastEditedTicket.AreaName</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">Category</div>
+                                    <div class="col-xs-6">@Model.LastEditedTicket.Category</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">Assigned to</div>
+                                    <div class="col-xs-6">@Model.LastEditedTicket.AssignedUserName </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">Priority</div>
+                                    <div class="col-xs-6">@Model.LastEditedTicket.Priority</div>
+                                </div>
+                            </div><!-- col-sm-6 -->
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-xs-6">Status</div>
+                                    <div class="col-xs-6">@Model.LastEditedTicket.StatusDescription</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">Created By</div>
+                                    <div class="col-xs-6">@Model.LastEditedTicket.OwnerUserName</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">Is billiable</div>
+                                    <div class="col-xs-6">@Model.LastEditedTicket.IsBillableCaption</div>
+                                </div>
+                            </div><!-- col-sm-6 -->
+                        </div><!-- row -->
+
+                        <br /><br />
+
+                        <h5 class="subtitle subtitle-lined">Description</h5>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <textarea class="form-control" id="@Model.LastEditedTicket.TicketDetailId">@Model.LastEditedTicket.Content </textarea>
+                            </div>
+                        </div>
+                        
+
+                        <br /><br />
+                    </div>
+                </div><!-- row -->
+
+            </div><!-- panel-body -->
+        </div><!-- panel -->
+
+    </div><!-- contentpanel -->
+</div><!-- mainpanel -->
+
+@section scripts{
+    @Scripts.Render("~/bundles/summernote", "~/Scripts/ticket-create.js")
+  
+
+    <script type="text/javascript">
+        $(document)
+            .ready(function() {
+                addButtonActions();
+                setCombos();
+                setProjectAndAreas();
+                setContentAsSummeryNoteControl();
+            });
+
+        function setContentAsSummeryNoteControl() {
+            var contentId= "#" + @Model.LastEditedTicket.TicketDetailId;
+
+            $(contentId).summernote({
+                height: 100,
+                toolbar: false
+            });
+            $(contentId).summernote('disable');
+        }
+
+        function addButtonActions() {
+            $("#EditTicketBtn")
+                .click(function() {
+                    $("#editTicket").show("slow");
+                    $("#cancelEditionBtn").show("slow");
+                });
+
+            $("#cancelEditionLnk")
+                .click(function() {
+                    $("#editTicket").hide("Highlight");
+                });
+
+        }
+
+        function setCombos() {
+            $('#ProjectId')
+                .change(function() {
+                    var projectId = $('#ProjectId').val();
+                    dataService.getAreasByProject(projectId,
+                        function(data) {
+                            var items;
+                            $.each(data,
+                                function(i, area) {
+                                    items += "<option value='" + area.AreaId + "'>" + area.Name + "</option>";
+                                });
+                            $('#areas').html(items);
+                            $("#areas")[0].selectedIndex = 0;
+                            $("#AreaId").val($("#areas").val());
+                        });
+
+                });
+
+            $('#areas')
+                .change(function() {
+                    $("#AreaId").val($(this).val());
+                });
+        };
+
+        function setProjectAndAreas() {
+            var projectId = $('#ProjectId').val();
+            var areaId = $("#AreaId").val();
+            dataService.getAreasByProject(projectId,
+                function(data) {
+                    var items;
+                    $.each(data,
+                        function(i, area) {
+                            items += "<option value='" + area.AreaId + "'>" + area.Name + "</option>";
+                        });
+                    $('#areas').html(items);
+                    $("#areas").val(areaId);
+                });
+        }
+
+
+    </script>
+
+
+
+}

@@ -65,6 +65,10 @@ namespace MyTasks.Domain.DataContracts
 
         public bool IsBillable { get; set; }
 
+        public string IsBillableCaption
+        {
+            get { return IsBillable ? Localization.Desktop.Desktop.Yes : Localization.Desktop.Desktop.No; }
+        }
         public string AssignedUserName { get; set; }
 
         public List<FileData> Files { get; set; }

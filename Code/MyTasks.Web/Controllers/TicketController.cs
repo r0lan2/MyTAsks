@@ -104,7 +104,14 @@ namespace MyTasks.Web.Controllers
             
         }
 
-     
+        public ActionResult TicketView(int ticketNumber)
+        {
+            var ticketHistoryData = unitOfWork.GetTicketHistory(ticketNumber);
+            var lastEditedTicket = ticketHistoryData.LastEditedTicket;
+            PopulateDropdowns(lastEditedTicket.CustomerId, lastEditedTicket.CategoryId, lastEditedTicket.PriorityId, lastEditedTicket.ProjectId, lastEditedTicket.UserId, lastEditedTicket.AreaId);
+            return View(ticketHistoryData);
+        }
+
 
         public List<Project> GetProjects()
         {
