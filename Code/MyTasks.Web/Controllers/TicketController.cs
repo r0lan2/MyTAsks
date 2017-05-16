@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,7 +9,6 @@ using MyTasks.Domain;
 using MyTasks.Domain.DataContracts;
 using MyTasks.Localization.Desktop;
 using MyTasks.Web.Models;
-using WebGrease.Css.Extensions;
 
 
 namespace MyTasks.Web.Controllers
@@ -176,7 +173,10 @@ namespace MyTasks.Web.Controllers
         public void PopulatePriorities(object selectPriorityId= null)
         {
             var priorities = from p in unitOfWork.PriorityRepository.All() orderby p.PriorityId select p;
-            priorities.ForEach(p=> p.Name= Desktop.ResourceManager.GetString(p.Code));
+            foreach (var p in priorities)
+            {
+                p.Name = Desktop.ResourceManager.GetString(p.Code);
+            }
             ViewBag.PriorityList = new SelectList(priorities, "PriorityId", "Name", selectPriorityId);
         }
 

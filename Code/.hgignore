@@ -39,9 +39,7 @@ _ReSharper*/
 *.dot[Cc]over
 *.xap
 *.datasource
-SW/AquaFarmer/resources/**
-SW/CubeDeployment/AquaFarmerCube_v3/**
-SW/AquaFarmer/ClientBin/ReportFinderFiles/**
+MyTasks.Web/vendors/**
 Metrics.typemock*
 [Ww]eb.[Cc]onfig
 ConnectionStrings.[Cc]onfig
