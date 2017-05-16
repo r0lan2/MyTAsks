@@ -252,3 +252,4 @@ paket-files/
 *.sln.iml
 *.xlsx
 /Code/MyTasks.Web/UploadedFiles/TicketFiles
+/Code/MyTasks.Web/vendors
